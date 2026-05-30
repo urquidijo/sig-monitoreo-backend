@@ -1,0 +1,89 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  moduleFormat    = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum EstadoAlerta {
+  NORMAL
+  FUERA_AREA
+}
+
+model Tutor {
+  id         Int      @id @default(autoincrement())
+  nombre     String
+  telefono   String?
+  email      String?  @unique
+  ninos      Nino[]
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("tutores")
+}
+
+model Nino {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  edad        Int?
+  tutorId     Int
+  tutor       Tutor    @relation(fields: [tutorId], references: [id])
+
+  posiciones  PosicionNino[]
+  alertas     Alerta[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("ninos")
+}
+
+model ZonaMonitoreo {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  descripcion String?
+  activo      Boolean  @default(true)
+
+  geom Unsupported("geometry(Polygon, 4326)")?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("zonas_monitoreo")
+}
+
+model PosicionNino {
+  id          Int      @id @default(autoincrement())
+  ninoId      Int
+  nino        Nino     @relation(fields: [ninoId], references: [id])
+
+  latitud     Float
+  longitud    Float
+  dentroArea  Boolean  @default(true)
+
+  geom Unsupported("geometry(Point, 4326)")?
+
+  createdAt   DateTime @default(now())
+
+  @@map("posiciones_nino")
+}
+
+model Alerta {
+  id          Int           @id @default(autoincrement())
+  ninoId      Int
+  nino        Nino          @relation(fields: [ninoId], references: [id])
+
+  estado      EstadoAlerta
+  mensaje     String
+  latitud     Float
+  longitud    Float
+  atendida    Boolean       @default(false)
+
+  createdAt   DateTime      @default(now())
+
+  @@map("alertas")
+}
