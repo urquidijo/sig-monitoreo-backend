@@ -5,7 +5,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: ['http://localhost:3000','https://sig-monitoreo-frontend.vercel.app/'],
+    origin: ['http://localhost:3000','https://sig-monitoreo-frontend.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     credentials: true,
   });
