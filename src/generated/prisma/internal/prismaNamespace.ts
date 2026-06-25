@@ -386,6 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Tutor: 'Tutor',
   Nino: 'Nino',
+  CodigoVinculacion: 'CodigoVinculacion',
+  Dispositivo: 'Dispositivo',
   ZonaMonitoreo: 'ZonaMonitoreo',
   PosicionNino: 'PosicionNino',
   Alerta: 'Alerta'
@@ -404,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tutor" | "nino" | "zonaMonitoreo" | "posicionNino" | "alerta"
+    modelProps: "tutor" | "nino" | "codigoVinculacion" | "dispositivo" | "zonaMonitoreo" | "posicionNino" | "alerta"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -553,6 +555,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.NinoCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.NinoCountAggregateOutputType> | number
+        }
+      }
+    }
+    CodigoVinculacion: {
+      payload: Prisma.$CodigoVinculacionPayload<ExtArgs>
+      fields: Prisma.CodigoVinculacionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CodigoVinculacionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CodigoVinculacionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>
+        }
+        findFirst: {
+          args: Prisma.CodigoVinculacionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CodigoVinculacionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>
+        }
+        findMany: {
+          args: Prisma.CodigoVinculacionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>[]
+        }
+        create: {
+          args: Prisma.CodigoVinculacionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>
+        }
+        createMany: {
+          args: Prisma.CodigoVinculacionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CodigoVinculacionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>[]
+        }
+        delete: {
+          args: Prisma.CodigoVinculacionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>
+        }
+        update: {
+          args: Prisma.CodigoVinculacionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>
+        }
+        deleteMany: {
+          args: Prisma.CodigoVinculacionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CodigoVinculacionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CodigoVinculacionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>[]
+        }
+        upsert: {
+          args: Prisma.CodigoVinculacionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoVinculacionPayload>
+        }
+        aggregate: {
+          args: Prisma.CodigoVinculacionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCodigoVinculacion>
+        }
+        groupBy: {
+          args: Prisma.CodigoVinculacionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CodigoVinculacionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CodigoVinculacionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CodigoVinculacionCountAggregateOutputType> | number
+        }
+      }
+    }
+    Dispositivo: {
+      payload: Prisma.$DispositivoPayload<ExtArgs>
+      fields: Prisma.DispositivoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DispositivoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DispositivoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>
+        }
+        findFirst: {
+          args: Prisma.DispositivoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DispositivoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>
+        }
+        findMany: {
+          args: Prisma.DispositivoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>[]
+        }
+        create: {
+          args: Prisma.DispositivoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>
+        }
+        createMany: {
+          args: Prisma.DispositivoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DispositivoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>[]
+        }
+        delete: {
+          args: Prisma.DispositivoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>
+        }
+        update: {
+          args: Prisma.DispositivoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>
+        }
+        deleteMany: {
+          args: Prisma.DispositivoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DispositivoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DispositivoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>[]
+        }
+        upsert: {
+          args: Prisma.DispositivoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DispositivoPayload>
+        }
+        aggregate: {
+          args: Prisma.DispositivoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDispositivo>
+        }
+        groupBy: {
+          args: Prisma.DispositivoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DispositivoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DispositivoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DispositivoCountAggregateOutputType> | number
         }
       }
     }
@@ -841,6 +991,31 @@ export const NinoScalarFieldEnum = {
 export type NinoScalarFieldEnum = (typeof NinoScalarFieldEnum)[keyof typeof NinoScalarFieldEnum]
 
 
+export const CodigoVinculacionScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  ninoId: 'ninoId',
+  usado: 'usado',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CodigoVinculacionScalarFieldEnum = (typeof CodigoVinculacionScalarFieldEnum)[keyof typeof CodigoVinculacionScalarFieldEnum]
+
+
+export const DispositivoScalarFieldEnum = {
+  id: 'id',
+  ninoId: 'ninoId',
+  token: 'token',
+  plataforma: 'plataforma',
+  revocado: 'revocado',
+  ultimaConexion: 'ultimaConexion',
+  createdAt: 'createdAt'
+} as const
+
+export type DispositivoScalarFieldEnum = (typeof DispositivoScalarFieldEnum)[keyof typeof DispositivoScalarFieldEnum]
+
+
 export const ZonaMonitoreoScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
@@ -1097,6 +1272,8 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   tutor?: Prisma.TutorOmit
   nino?: Prisma.NinoOmit
+  codigoVinculacion?: Prisma.CodigoVinculacionOmit
+  dispositivo?: Prisma.DispositivoOmit
   zonaMonitoreo?: Prisma.ZonaMonitoreoOmit
   posicionNino?: Prisma.PosicionNinoOmit
   alerta?: Prisma.AlertaOmit

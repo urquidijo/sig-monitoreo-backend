@@ -235,6 +235,8 @@ export type NinoWhereInput = {
   tutor?: Prisma.XOR<Prisma.TutorScalarRelationFilter, Prisma.TutorWhereInput>
   posiciones?: Prisma.PosicionNinoListRelationFilter
   alertas?: Prisma.AlertaListRelationFilter
+  dispositivos?: Prisma.DispositivoListRelationFilter
+  codigosVinculacion?: Prisma.CodigoVinculacionListRelationFilter
 }
 
 export type NinoOrderByWithRelationInput = {
@@ -247,6 +249,8 @@ export type NinoOrderByWithRelationInput = {
   tutor?: Prisma.TutorOrderByWithRelationInput
   posiciones?: Prisma.PosicionNinoOrderByRelationAggregateInput
   alertas?: Prisma.AlertaOrderByRelationAggregateInput
+  dispositivos?: Prisma.DispositivoOrderByRelationAggregateInput
+  codigosVinculacion?: Prisma.CodigoVinculacionOrderByRelationAggregateInput
 }
 
 export type NinoWhereUniqueInput = Prisma.AtLeast<{
@@ -262,6 +266,8 @@ export type NinoWhereUniqueInput = Prisma.AtLeast<{
   tutor?: Prisma.XOR<Prisma.TutorScalarRelationFilter, Prisma.TutorWhereInput>
   posiciones?: Prisma.PosicionNinoListRelationFilter
   alertas?: Prisma.AlertaListRelationFilter
+  dispositivos?: Prisma.DispositivoListRelationFilter
+  codigosVinculacion?: Prisma.CodigoVinculacionListRelationFilter
 }, "id">
 
 export type NinoOrderByWithAggregationInput = {
@@ -298,6 +304,8 @@ export type NinoCreateInput = {
   tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
   posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateInput = {
@@ -309,6 +317,8 @@ export type NinoUncheckedCreateInput = {
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUpdateInput = {
@@ -319,6 +329,8 @@ export type NinoUpdateInput = {
   tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
   posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateInput = {
@@ -330,6 +342,8 @@ export type NinoUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateManyInput = {
@@ -461,6 +475,34 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NinoCreateNestedOneWithoutCodigosVinculacionInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutCodigosVinculacionInput, Prisma.NinoUncheckedCreateWithoutCodigosVinculacionInput>
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutCodigosVinculacionInput
+  connect?: Prisma.NinoWhereUniqueInput
+}
+
+export type NinoUpdateOneRequiredWithoutCodigosVinculacionNestedInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutCodigosVinculacionInput, Prisma.NinoUncheckedCreateWithoutCodigosVinculacionInput>
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutCodigosVinculacionInput
+  upsert?: Prisma.NinoUpsertWithoutCodigosVinculacionInput
+  connect?: Prisma.NinoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.NinoUpdateToOneWithWhereWithoutCodigosVinculacionInput, Prisma.NinoUpdateWithoutCodigosVinculacionInput>, Prisma.NinoUncheckedUpdateWithoutCodigosVinculacionInput>
+}
+
+export type NinoCreateNestedOneWithoutDispositivosInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutDispositivosInput, Prisma.NinoUncheckedCreateWithoutDispositivosInput>
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutDispositivosInput
+  connect?: Prisma.NinoWhereUniqueInput
+}
+
+export type NinoUpdateOneRequiredWithoutDispositivosNestedInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutDispositivosInput, Prisma.NinoUncheckedCreateWithoutDispositivosInput>
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutDispositivosInput
+  upsert?: Prisma.NinoUpsertWithoutDispositivosInput
+  connect?: Prisma.NinoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.NinoUpdateToOneWithWhereWithoutDispositivosInput, Prisma.NinoUpdateWithoutDispositivosInput>, Prisma.NinoUncheckedUpdateWithoutDispositivosInput>
+}
+
 export type NinoCreateNestedOneWithoutPosicionesInput = {
   create?: Prisma.XOR<Prisma.NinoCreateWithoutPosicionesInput, Prisma.NinoUncheckedCreateWithoutPosicionesInput>
   connectOrCreate?: Prisma.NinoCreateOrConnectWithoutPosicionesInput
@@ -496,6 +538,8 @@ export type NinoCreateWithoutTutorInput = {
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateWithoutTutorInput = {
@@ -506,6 +550,8 @@ export type NinoUncheckedCreateWithoutTutorInput = {
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoCreateOrConnectWithoutTutorInput = {
@@ -546,6 +592,130 @@ export type NinoScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Nino"> | Date | string
 }
 
+export type NinoCreateWithoutCodigosVinculacionInput = {
+  nombre: string
+  edad?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
+  posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
+  alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
+}
+
+export type NinoUncheckedCreateWithoutCodigosVinculacionInput = {
+  id?: number
+  nombre: string
+  edad?: number | null
+  tutorId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
+  alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
+}
+
+export type NinoCreateOrConnectWithoutCodigosVinculacionInput = {
+  where: Prisma.NinoWhereUniqueInput
+  create: Prisma.XOR<Prisma.NinoCreateWithoutCodigosVinculacionInput, Prisma.NinoUncheckedCreateWithoutCodigosVinculacionInput>
+}
+
+export type NinoUpsertWithoutCodigosVinculacionInput = {
+  update: Prisma.XOR<Prisma.NinoUpdateWithoutCodigosVinculacionInput, Prisma.NinoUncheckedUpdateWithoutCodigosVinculacionInput>
+  create: Prisma.XOR<Prisma.NinoCreateWithoutCodigosVinculacionInput, Prisma.NinoUncheckedCreateWithoutCodigosVinculacionInput>
+  where?: Prisma.NinoWhereInput
+}
+
+export type NinoUpdateToOneWithWhereWithoutCodigosVinculacionInput = {
+  where?: Prisma.NinoWhereInput
+  data: Prisma.XOR<Prisma.NinoUpdateWithoutCodigosVinculacionInput, Prisma.NinoUncheckedUpdateWithoutCodigosVinculacionInput>
+}
+
+export type NinoUpdateWithoutCodigosVinculacionInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
+  posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
+  alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
+}
+
+export type NinoUncheckedUpdateWithoutCodigosVinculacionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tutorId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
+  alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
+}
+
+export type NinoCreateWithoutDispositivosInput = {
+  nombre: string
+  edad?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
+  posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
+  alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
+}
+
+export type NinoUncheckedCreateWithoutDispositivosInput = {
+  id?: number
+  nombre: string
+  edad?: number | null
+  tutorId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
+  alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
+}
+
+export type NinoCreateOrConnectWithoutDispositivosInput = {
+  where: Prisma.NinoWhereUniqueInput
+  create: Prisma.XOR<Prisma.NinoCreateWithoutDispositivosInput, Prisma.NinoUncheckedCreateWithoutDispositivosInput>
+}
+
+export type NinoUpsertWithoutDispositivosInput = {
+  update: Prisma.XOR<Prisma.NinoUpdateWithoutDispositivosInput, Prisma.NinoUncheckedUpdateWithoutDispositivosInput>
+  create: Prisma.XOR<Prisma.NinoCreateWithoutDispositivosInput, Prisma.NinoUncheckedCreateWithoutDispositivosInput>
+  where?: Prisma.NinoWhereInput
+}
+
+export type NinoUpdateToOneWithWhereWithoutDispositivosInput = {
+  where?: Prisma.NinoWhereInput
+  data: Prisma.XOR<Prisma.NinoUpdateWithoutDispositivosInput, Prisma.NinoUncheckedUpdateWithoutDispositivosInput>
+}
+
+export type NinoUpdateWithoutDispositivosInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
+  posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
+  alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
+}
+
+export type NinoUncheckedUpdateWithoutDispositivosInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tutorId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
+  alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
+}
+
 export type NinoCreateWithoutPosicionesInput = {
   nombre: string
   edad?: number | null
@@ -553,6 +723,8 @@ export type NinoCreateWithoutPosicionesInput = {
   updatedAt?: Date | string
   tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
   alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateWithoutPosicionesInput = {
@@ -563,6 +735,8 @@ export type NinoUncheckedCreateWithoutPosicionesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoCreateOrConnectWithoutPosicionesInput = {
@@ -588,6 +762,8 @@ export type NinoUpdateWithoutPosicionesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
   alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateWithoutPosicionesInput = {
@@ -598,6 +774,8 @@ export type NinoUncheckedUpdateWithoutPosicionesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateWithoutAlertasInput = {
@@ -607,6 +785,8 @@ export type NinoCreateWithoutAlertasInput = {
   updatedAt?: Date | string
   tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
   posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateWithoutAlertasInput = {
@@ -617,6 +797,8 @@ export type NinoUncheckedCreateWithoutAlertasInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoCreateOrConnectWithoutAlertasInput = {
@@ -642,6 +824,8 @@ export type NinoUpdateWithoutAlertasInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
   posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateWithoutAlertasInput = {
@@ -652,6 +836,8 @@ export type NinoUncheckedUpdateWithoutAlertasInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateManyTutorInput = {
@@ -669,6 +855,8 @@ export type NinoUpdateWithoutTutorInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateWithoutTutorInput = {
@@ -679,6 +867,8 @@ export type NinoUncheckedUpdateWithoutTutorInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateManyWithoutTutorInput = {
@@ -697,11 +887,15 @@ export type NinoUncheckedUpdateManyWithoutTutorInput = {
 export type NinoCountOutputType = {
   posiciones: number
   alertas: number
+  dispositivos: number
+  codigosVinculacion: number
 }
 
 export type NinoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   posiciones?: boolean | NinoCountOutputTypeCountPosicionesArgs
   alertas?: boolean | NinoCountOutputTypeCountAlertasArgs
+  dispositivos?: boolean | NinoCountOutputTypeCountDispositivosArgs
+  codigosVinculacion?: boolean | NinoCountOutputTypeCountCodigosVinculacionArgs
 }
 
 /**
@@ -728,6 +922,20 @@ export type NinoCountOutputTypeCountAlertasArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.AlertaWhereInput
 }
 
+/**
+ * NinoCountOutputType without action
+ */
+export type NinoCountOutputTypeCountDispositivosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DispositivoWhereInput
+}
+
+/**
+ * NinoCountOutputType without action
+ */
+export type NinoCountOutputTypeCountCodigosVinculacionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CodigoVinculacionWhereInput
+}
+
 
 export type NinoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -739,6 +947,8 @@ export type NinoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   tutor?: boolean | Prisma.TutorDefaultArgs<ExtArgs>
   posiciones?: boolean | Prisma.Nino$posicionesArgs<ExtArgs>
   alertas?: boolean | Prisma.Nino$alertasArgs<ExtArgs>
+  dispositivos?: boolean | Prisma.Nino$dispositivosArgs<ExtArgs>
+  codigosVinculacion?: boolean | Prisma.Nino$codigosVinculacionArgs<ExtArgs>
   _count?: boolean | Prisma.NinoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["nino"]>
 
@@ -776,6 +986,8 @@ export type NinoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   tutor?: boolean | Prisma.TutorDefaultArgs<ExtArgs>
   posiciones?: boolean | Prisma.Nino$posicionesArgs<ExtArgs>
   alertas?: boolean | Prisma.Nino$alertasArgs<ExtArgs>
+  dispositivos?: boolean | Prisma.Nino$dispositivosArgs<ExtArgs>
+  codigosVinculacion?: boolean | Prisma.Nino$codigosVinculacionArgs<ExtArgs>
   _count?: boolean | Prisma.NinoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type NinoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -791,6 +1003,8 @@ export type $NinoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     tutor: Prisma.$TutorPayload<ExtArgs>
     posiciones: Prisma.$PosicionNinoPayload<ExtArgs>[]
     alertas: Prisma.$AlertaPayload<ExtArgs>[]
+    dispositivos: Prisma.$DispositivoPayload<ExtArgs>[]
+    codigosVinculacion: Prisma.$CodigoVinculacionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1196,6 +1410,8 @@ export interface Prisma__NinoClient<T, Null = never, ExtArgs extends runtime.Typ
   tutor<T extends Prisma.TutorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TutorDefaultArgs<ExtArgs>>): Prisma.Prisma__TutorClient<runtime.Types.Result.GetResult<Prisma.$TutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   posiciones<T extends Prisma.Nino$posicionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$posicionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PosicionNinoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   alertas<T extends Prisma.Nino$alertasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$alertasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlertaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  dispositivos<T extends Prisma.Nino$dispositivosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$dispositivosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DispositivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  codigosVinculacion<T extends Prisma.Nino$codigosVinculacionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$codigosVinculacionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CodigoVinculacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1677,6 +1893,54 @@ export type Nino$alertasArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.AlertaScalarFieldEnum | Prisma.AlertaScalarFieldEnum[]
+}
+
+/**
+ * Nino.dispositivos
+ */
+export type Nino$dispositivosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Dispositivo
+   */
+  select?: Prisma.DispositivoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Dispositivo
+   */
+  omit?: Prisma.DispositivoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DispositivoInclude<ExtArgs> | null
+  where?: Prisma.DispositivoWhereInput
+  orderBy?: Prisma.DispositivoOrderByWithRelationInput | Prisma.DispositivoOrderByWithRelationInput[]
+  cursor?: Prisma.DispositivoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DispositivoScalarFieldEnum | Prisma.DispositivoScalarFieldEnum[]
+}
+
+/**
+ * Nino.codigosVinculacion
+ */
+export type Nino$codigosVinculacionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CodigoVinculacion
+   */
+  select?: Prisma.CodigoVinculacionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CodigoVinculacion
+   */
+  omit?: Prisma.CodigoVinculacionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CodigoVinculacionInclude<ExtArgs> | null
+  where?: Prisma.CodigoVinculacionWhereInput
+  orderBy?: Prisma.CodigoVinculacionOrderByWithRelationInput | Prisma.CodigoVinculacionOrderByWithRelationInput[]
+  cursor?: Prisma.CodigoVinculacionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CodigoVinculacionScalarFieldEnum | Prisma.CodigoVinculacionScalarFieldEnum[]
 }
 
 /**

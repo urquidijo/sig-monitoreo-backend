@@ -26,6 +26,19 @@ export class NinosService {
     return tutor;
   }
 
+  async crear(dto: { nombre: string; edad?: number; tutorId: number }) {
+    return this.prisma.nino.create({
+      data: {
+        nombre: dto.nombre,
+        edad: dto.edad,
+        tutorId: dto.tutorId,
+      },
+      include: {
+        tutor: true,
+      },
+    });
+  }
+
   async listar() {
     return this.prisma.nino.findMany({
       include: {

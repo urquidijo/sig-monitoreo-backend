@@ -4,6 +4,7 @@ import { MonitoreoController } from './monitoreo.controller';
 
 @Module({
   providers: [MonitoreoService],
-  controllers: [MonitoreoController]
+  controllers: [MonitoreoController],
+  exports: [MonitoreoService],
 })
 export class MonitoreoModule {}

@@ -35,11 +35,42 @@ model Nino {
 
   posiciones  PosicionNino[]
   alertas     Alerta[]
+  dispositivos        Dispositivo[]
+  codigosVinculacion  CodigoVinculacion[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@map("ninos")
+}
+
+model CodigoVinculacion {
+  id        Int      @id @default(autoincrement())
+  codigo    String   @unique
+  ninoId    Int
+  nino      Nino     @relation(fields: [ninoId], references: [id])
+
+  usado     Boolean  @default(false)
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+
+  @@map("codigos_vinculacion")
+}
+
+model Dispositivo {
+  id              Int       @id @default(autoincrement())
+  ninoId          Int
+  nino            Nino      @relation(fields: [ninoId], references: [id])
+
+  token           String    @unique
+  plataforma      String?
+  revocado        Boolean   @default(false)
+  ultimaConexion  DateTime?
+
+  createdAt       DateTime  @default(now())
+
+  @@map("dispositivos")
 }
 
 model ZonaMonitoreo {

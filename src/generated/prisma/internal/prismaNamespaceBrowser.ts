@@ -53,6 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Tutor: 'Tutor',
   Nino: 'Nino',
+  CodigoVinculacion: 'CodigoVinculacion',
+  Dispositivo: 'Dispositivo',
   ZonaMonitoreo: 'ZonaMonitoreo',
   PosicionNino: 'PosicionNino',
   Alerta: 'Alerta'
@@ -96,6 +98,31 @@ export const NinoScalarFieldEnum = {
 } as const
 
 export type NinoScalarFieldEnum = (typeof NinoScalarFieldEnum)[keyof typeof NinoScalarFieldEnum]
+
+
+export const CodigoVinculacionScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  ninoId: 'ninoId',
+  usado: 'usado',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CodigoVinculacionScalarFieldEnum = (typeof CodigoVinculacionScalarFieldEnum)[keyof typeof CodigoVinculacionScalarFieldEnum]
+
+
+export const DispositivoScalarFieldEnum = {
+  id: 'id',
+  ninoId: 'ninoId',
+  token: 'token',
+  plataforma: 'plataforma',
+  revocado: 'revocado',
+  ultimaConexion: 'ultimaConexion',
+  createdAt: 'createdAt'
+} as const
+
+export type DispositivoScalarFieldEnum = (typeof DispositivoScalarFieldEnum)[keyof typeof DispositivoScalarFieldEnum]
 
 
 export const ZonaMonitoreoScalarFieldEnum = {

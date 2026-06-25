@@ -10,6 +10,8 @@
  */
 export type * from './models/Tutor.js'
 export type * from './models/Nino.js'
+export type * from './models/CodigoVinculacion.js'
+export type * from './models/Dispositivo.js'
 export type * from './models/ZonaMonitoreo.js'
 export type * from './models/PosicionNino.js'
 export type * from './models/Alerta.js'

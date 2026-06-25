@@ -50,6 +50,16 @@ export type Tutor = Prisma.TutorModel
  */
 export type Nino = Prisma.NinoModel
 /**
+ * Model CodigoVinculacion
+ * 
+ */
+export type CodigoVinculacion = Prisma.CodigoVinculacionModel
+/**
+ * Model Dispositivo
+ * 
+ */
+export type Dispositivo = Prisma.DispositivoModel
+/**
  * Model ZonaMonitoreo
  * 
  */
