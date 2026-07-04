@@ -9,6 +9,9 @@ import { AlertasModule } from './alertas/alertas.module';
 import { NinosModule } from './ninos/ninos.module';
 import { RealtimeModule } from './realtime/realtime.module';
 import { VinculacionModule } from './vinculacion/vinculacion.module';
+import { AuthModule } from './auth/auth.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
+import { CentrosEducativosModule } from './centros-educativos/centros-educativos.module';
 
 @Module({
   imports: [
@@ -19,6 +22,9 @@ import { VinculacionModule } from './vinculacion/vinculacion.module';
       throttlers: [{ ttl: 60_000, limit: 100 }],
     }),
     PrismaModule,
+    AuthModule,
+    UsuariosModule,
+    CentrosEducativosModule,
     ZonasModule,
     MonitoreoModule,
     AlertasModule,

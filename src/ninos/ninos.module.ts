@@ -4,6 +4,7 @@ import { NinosController } from './ninos.controller';
 
 @Module({
   providers: [NinosService],
-  controllers: [NinosController]
+  controllers: [NinosController],
+  exports: [NinosService],
 })
 export class NinosModule {}

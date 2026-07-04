@@ -13,6 +13,27 @@ enum EstadoAlerta {
   FUERA_AREA
 }
 
+enum RolUsuario {
+  ADMIN
+  TUTOR
+}
+
+model Usuario {
+  id           Int        @id @default(autoincrement())
+  nombre       String
+  email        String     @unique
+  passwordHash String
+  rol          RolUsuario
+  activo       Boolean    @default(true)
+
+  tutor        Tutor?
+
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@map("usuarios")
+}
+
 model Tutor {
   id         Int      @id @default(autoincrement())
   nombre     String
@@ -20,28 +41,67 @@ model Tutor {
   email      String?  @unique
   ninos      Nino[]
 
+  usuarioId  Int?     @unique
+  usuario    Usuario? @relation(fields: [usuarioId], references: [id])
+
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
   @@map("tutores")
 }
 
+model CentroEducativo {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  direccion   String?
+  telefono    String?
+  activo      Boolean  @default(true)
+
+  ninos       Nino[]
+  zonas       ZonaMonitoreo[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("centros_educativos")
+}
+
 model Nino {
   id          Int      @id @default(autoincrement())
   nombre      String
   edad        Int?
-  tutorId     Int
-  tutor       Tutor    @relation(fields: [tutorId], references: [id])
+  activo      Boolean  @default(true)
+
+  tutorId     Int?
+  tutor       Tutor?   @relation(fields: [tutorId], references: [id])
+
+  centroEducativoId Int?
+  centroEducativo   CentroEducativo? @relation(fields: [centroEducativoId], references: [id])
 
   posiciones  PosicionNino[]
   alertas     Alerta[]
   dispositivos        Dispositivo[]
   codigosVinculacion  CodigoVinculacion[]
+  codigosAfiliacion   CodigoAfiliacion[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@map("ninos")
+}
+
+model CodigoAfiliacion {
+  id        Int      @id @default(autoincrement())
+  codigo    String   @unique
+  ninoId    Int
+  nino      Nino     @relation(fields: [ninoId], references: [id])
+
+  usado     Boolean  @default(false)
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+
+  @@map("codigos_afiliacion")
 }
 
 model CodigoVinculacion {
@@ -78,6 +138,9 @@ model ZonaMonitoreo {
   nombre      String
   descripcion String?
   activo      Boolean  @default(true)
+
+  centroEducativoId Int?
+  centroEducativo   CentroEducativo? @relation(fields: [centroEducativoId], references: [id])
 
   geom Unsupported("geometry(Polygon, 4326)")?
 

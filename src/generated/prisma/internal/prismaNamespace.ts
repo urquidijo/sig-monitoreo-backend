@@ -384,8 +384,11 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  Usuario: 'Usuario',
   Tutor: 'Tutor',
+  CentroEducativo: 'CentroEducativo',
   Nino: 'Nino',
+  CodigoAfiliacion: 'CodigoAfiliacion',
   CodigoVinculacion: 'CodigoVinculacion',
   Dispositivo: 'Dispositivo',
   ZonaMonitoreo: 'ZonaMonitoreo',
@@ -406,10 +409,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tutor" | "nino" | "codigoVinculacion" | "dispositivo" | "zonaMonitoreo" | "posicionNino" | "alerta"
+    modelProps: "usuario" | "tutor" | "centroEducativo" | "nino" | "codigoAfiliacion" | "codigoVinculacion" | "dispositivo" | "zonaMonitoreo" | "posicionNino" | "alerta"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    Usuario: {
+      payload: Prisma.$UsuarioPayload<ExtArgs>
+      fields: Prisma.UsuarioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UsuarioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UsuarioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        findFirst: {
+          args: Prisma.UsuarioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UsuarioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        findMany: {
+          args: Prisma.UsuarioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>[]
+        }
+        create: {
+          args: Prisma.UsuarioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        createMany: {
+          args: Prisma.UsuarioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UsuarioCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>[]
+        }
+        delete: {
+          args: Prisma.UsuarioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        update: {
+          args: Prisma.UsuarioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        deleteMany: {
+          args: Prisma.UsuarioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UsuarioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UsuarioUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>[]
+        }
+        upsert: {
+          args: Prisma.UsuarioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        aggregate: {
+          args: Prisma.UsuarioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUsuario>
+        }
+        groupBy: {
+          args: Prisma.UsuarioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UsuarioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UsuarioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UsuarioCountAggregateOutputType> | number
+        }
+      }
+    }
     Tutor: {
       payload: Prisma.$TutorPayload<ExtArgs>
       fields: Prisma.TutorFieldRefs
@@ -484,6 +561,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CentroEducativo: {
+      payload: Prisma.$CentroEducativoPayload<ExtArgs>
+      fields: Prisma.CentroEducativoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CentroEducativoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CentroEducativoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>
+        }
+        findFirst: {
+          args: Prisma.CentroEducativoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CentroEducativoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>
+        }
+        findMany: {
+          args: Prisma.CentroEducativoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>[]
+        }
+        create: {
+          args: Prisma.CentroEducativoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>
+        }
+        createMany: {
+          args: Prisma.CentroEducativoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CentroEducativoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>[]
+        }
+        delete: {
+          args: Prisma.CentroEducativoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>
+        }
+        update: {
+          args: Prisma.CentroEducativoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>
+        }
+        deleteMany: {
+          args: Prisma.CentroEducativoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CentroEducativoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CentroEducativoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>[]
+        }
+        upsert: {
+          args: Prisma.CentroEducativoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CentroEducativoPayload>
+        }
+        aggregate: {
+          args: Prisma.CentroEducativoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCentroEducativo>
+        }
+        groupBy: {
+          args: Prisma.CentroEducativoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CentroEducativoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CentroEducativoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CentroEducativoCountAggregateOutputType> | number
+        }
+      }
+    }
     Nino: {
       payload: Prisma.$NinoPayload<ExtArgs>
       fields: Prisma.NinoFieldRefs
@@ -555,6 +706,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.NinoCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.NinoCountAggregateOutputType> | number
+        }
+      }
+    }
+    CodigoAfiliacion: {
+      payload: Prisma.$CodigoAfiliacionPayload<ExtArgs>
+      fields: Prisma.CodigoAfiliacionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CodigoAfiliacionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CodigoAfiliacionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>
+        }
+        findFirst: {
+          args: Prisma.CodigoAfiliacionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CodigoAfiliacionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>
+        }
+        findMany: {
+          args: Prisma.CodigoAfiliacionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>[]
+        }
+        create: {
+          args: Prisma.CodigoAfiliacionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>
+        }
+        createMany: {
+          args: Prisma.CodigoAfiliacionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CodigoAfiliacionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>[]
+        }
+        delete: {
+          args: Prisma.CodigoAfiliacionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>
+        }
+        update: {
+          args: Prisma.CodigoAfiliacionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>
+        }
+        deleteMany: {
+          args: Prisma.CodigoAfiliacionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CodigoAfiliacionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CodigoAfiliacionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>[]
+        }
+        upsert: {
+          args: Prisma.CodigoAfiliacionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CodigoAfiliacionPayload>
+        }
+        aggregate: {
+          args: Prisma.CodigoAfiliacionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCodigoAfiliacion>
+        }
+        groupBy: {
+          args: Prisma.CodigoAfiliacionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CodigoAfiliacionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CodigoAfiliacionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CodigoAfiliacionCountAggregateOutputType> | number
         }
       }
     }
@@ -967,11 +1192,26 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const UsuarioScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  rol: 'rol',
+  activo: 'activo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
 export const TutorScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   telefono: 'telefono',
   email: 'email',
+  usuarioId: 'usuarioId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -979,16 +1219,43 @@ export const TutorScalarFieldEnum = {
 export type TutorScalarFieldEnum = (typeof TutorScalarFieldEnum)[keyof typeof TutorScalarFieldEnum]
 
 
+export const CentroEducativoScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  direccion: 'direccion',
+  telefono: 'telefono',
+  activo: 'activo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CentroEducativoScalarFieldEnum = (typeof CentroEducativoScalarFieldEnum)[keyof typeof CentroEducativoScalarFieldEnum]
+
+
 export const NinoScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   edad: 'edad',
+  activo: 'activo',
   tutorId: 'tutorId',
+  centroEducativoId: 'centroEducativoId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type NinoScalarFieldEnum = (typeof NinoScalarFieldEnum)[keyof typeof NinoScalarFieldEnum]
+
+
+export const CodigoAfiliacionScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  ninoId: 'ninoId',
+  usado: 'usado',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CodigoAfiliacionScalarFieldEnum = (typeof CodigoAfiliacionScalarFieldEnum)[keyof typeof CodigoAfiliacionScalarFieldEnum]
 
 
 export const CodigoVinculacionScalarFieldEnum = {
@@ -1021,6 +1288,7 @@ export const ZonaMonitoreoScalarFieldEnum = {
   nombre: 'nombre',
   descripcion: 'descripcion',
   activo: 'activo',
+  centroEducativoId: 'centroEducativoId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1113,6 +1381,27 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'RolUsuario'
+ */
+export type EnumRolUsuarioFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RolUsuario'>
+    
+
+
+/**
+ * Reference to a field of type 'RolUsuario[]'
+ */
+export type ListEnumRolUsuarioFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RolUsuario[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -1123,13 +1412,6 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1270,8 +1552,11 @@ export type PrismaClientOptions = ({
   queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
+  usuario?: Prisma.UsuarioOmit
   tutor?: Prisma.TutorOmit
+  centroEducativo?: Prisma.CentroEducativoOmit
   nino?: Prisma.NinoOmit
+  codigoAfiliacion?: Prisma.CodigoAfiliacionOmit
   codigoVinculacion?: Prisma.CodigoVinculacionOmit
   dispositivo?: Prisma.DispositivoOmit
   zonaMonitoreo?: Prisma.ZonaMonitoreoOmit

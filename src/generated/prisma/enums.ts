@@ -15,3 +15,11 @@ export const EstadoAlerta = {
 } as const
 
 export type EstadoAlerta = (typeof EstadoAlerta)[keyof typeof EstadoAlerta]
+
+
+export const RolUsuario = {
+  ADMIN: 'ADMIN',
+  TUTOR: 'TUTOR'
+} as const
+
+export type RolUsuario = (typeof RolUsuario)[keyof typeof RolUsuario]

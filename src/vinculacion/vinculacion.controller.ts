@@ -1,7 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 import { VinculacionService } from './vinculacion.service';
+import { Public } from '../auth/decorators/public.decorator';
 
+@Public()
 @Controller('vinculacion')
 export class VinculacionController {
   constructor(private readonly vinculacionService: VinculacionService) {}

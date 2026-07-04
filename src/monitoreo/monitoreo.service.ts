@@ -1,9 +1,11 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { JwtPayload } from '../auth/strategies/jwt.strategy';
 
 interface ActualizarPosicionDto {
   ninoId: number;
@@ -149,7 +151,17 @@ export class MonitoreoService {
     });
   }
 
-  async obtenerUltimaPosicion(ninoId: number) {
+  async obtenerUltimaPosicion(ninoId: number, usuario: JwtPayload) {
+    if (usuario.rol === 'TUTOR') {
+      const nino = await this.prisma.nino.findUnique({
+        where: { id: ninoId },
+      });
+
+      if (!nino || nino.tutorId !== usuario.tutorId) {
+        throw new ForbiddenException('No tienes acceso a este niño');
+      }
+    }
+
     const posicion = await this.prisma.posicionNino.findFirst({
       where: { ninoId },
       orderBy: { createdAt: 'desc' },
@@ -164,7 +176,9 @@ export class MonitoreoService {
     });
 
     if (!posicion) {
-      throw new NotFoundException('No hay posiciones registradas para este niño');
+      throw new NotFoundException(
+        'No hay posiciones registradas para este niño',
+      );
     }
 
     return posicion;

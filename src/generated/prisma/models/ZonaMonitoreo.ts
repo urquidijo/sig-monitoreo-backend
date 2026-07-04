@@ -28,10 +28,12 @@ export type AggregateZonaMonitoreo = {
 
 export type ZonaMonitoreoAvgAggregateOutputType = {
   id: number | null
+  centroEducativoId: number | null
 }
 
 export type ZonaMonitoreoSumAggregateOutputType = {
   id: number | null
+  centroEducativoId: number | null
 }
 
 export type ZonaMonitoreoMinAggregateOutputType = {
@@ -39,6 +41,7 @@ export type ZonaMonitoreoMinAggregateOutputType = {
   nombre: string | null
   descripcion: string | null
   activo: boolean | null
+  centroEducativoId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -48,6 +51,7 @@ export type ZonaMonitoreoMaxAggregateOutputType = {
   nombre: string | null
   descripcion: string | null
   activo: boolean | null
+  centroEducativoId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -57,6 +61,7 @@ export type ZonaMonitoreoCountAggregateOutputType = {
   nombre: number
   descripcion: number
   activo: number
+  centroEducativoId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -65,10 +70,12 @@ export type ZonaMonitoreoCountAggregateOutputType = {
 
 export type ZonaMonitoreoAvgAggregateInputType = {
   id?: true
+  centroEducativoId?: true
 }
 
 export type ZonaMonitoreoSumAggregateInputType = {
   id?: true
+  centroEducativoId?: true
 }
 
 export type ZonaMonitoreoMinAggregateInputType = {
@@ -76,6 +83,7 @@ export type ZonaMonitoreoMinAggregateInputType = {
   nombre?: true
   descripcion?: true
   activo?: true
+  centroEducativoId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -85,6 +93,7 @@ export type ZonaMonitoreoMaxAggregateInputType = {
   nombre?: true
   descripcion?: true
   activo?: true
+  centroEducativoId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -94,6 +103,7 @@ export type ZonaMonitoreoCountAggregateInputType = {
   nombre?: true
   descripcion?: true
   activo?: true
+  centroEducativoId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -190,6 +200,7 @@ export type ZonaMonitoreoGroupByOutputType = {
   nombre: string
   descripcion: string | null
   activo: boolean
+  centroEducativoId: number | null
   createdAt: Date
   updatedAt: Date
   _count: ZonaMonitoreoCountAggregateOutputType | null
@@ -222,8 +233,10 @@ export type ZonaMonitoreoWhereInput = {
   nombre?: Prisma.StringFilter<"ZonaMonitoreo"> | string
   descripcion?: Prisma.StringNullableFilter<"ZonaMonitoreo"> | string | null
   activo?: Prisma.BoolFilter<"ZonaMonitoreo"> | boolean
+  centroEducativoId?: Prisma.IntNullableFilter<"ZonaMonitoreo"> | number | null
   createdAt?: Prisma.DateTimeFilter<"ZonaMonitoreo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ZonaMonitoreo"> | Date | string
+  centroEducativo?: Prisma.XOR<Prisma.CentroEducativoNullableScalarRelationFilter, Prisma.CentroEducativoWhereInput> | null
 }
 
 export type ZonaMonitoreoOrderByWithRelationInput = {
@@ -231,8 +244,10 @@ export type ZonaMonitoreoOrderByWithRelationInput = {
   nombre?: Prisma.SortOrder
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
   activo?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  centroEducativo?: Prisma.CentroEducativoOrderByWithRelationInput
 }
 
 export type ZonaMonitoreoWhereUniqueInput = Prisma.AtLeast<{
@@ -243,8 +258,10 @@ export type ZonaMonitoreoWhereUniqueInput = Prisma.AtLeast<{
   nombre?: Prisma.StringFilter<"ZonaMonitoreo"> | string
   descripcion?: Prisma.StringNullableFilter<"ZonaMonitoreo"> | string | null
   activo?: Prisma.BoolFilter<"ZonaMonitoreo"> | boolean
+  centroEducativoId?: Prisma.IntNullableFilter<"ZonaMonitoreo"> | number | null
   createdAt?: Prisma.DateTimeFilter<"ZonaMonitoreo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ZonaMonitoreo"> | Date | string
+  centroEducativo?: Prisma.XOR<Prisma.CentroEducativoNullableScalarRelationFilter, Prisma.CentroEducativoWhereInput> | null
 }, "id">
 
 export type ZonaMonitoreoOrderByWithAggregationInput = {
@@ -252,6 +269,7 @@ export type ZonaMonitoreoOrderByWithAggregationInput = {
   nombre?: Prisma.SortOrder
   descripcion?: Prisma.SortOrderInput | Prisma.SortOrder
   activo?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ZonaMonitoreoCountOrderByAggregateInput
@@ -269,6 +287,7 @@ export type ZonaMonitoreoScalarWhereWithAggregatesInput = {
   nombre?: Prisma.StringWithAggregatesFilter<"ZonaMonitoreo"> | string
   descripcion?: Prisma.StringNullableWithAggregatesFilter<"ZonaMonitoreo"> | string | null
   activo?: Prisma.BoolWithAggregatesFilter<"ZonaMonitoreo"> | boolean
+  centroEducativoId?: Prisma.IntNullableWithAggregatesFilter<"ZonaMonitoreo"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ZonaMonitoreo"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ZonaMonitoreo"> | Date | string
 }
@@ -279,6 +298,7 @@ export type ZonaMonitoreoCreateInput = {
   activo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  centroEducativo?: Prisma.CentroEducativoCreateNestedOneWithoutZonasInput
 }
 
 export type ZonaMonitoreoUncheckedCreateInput = {
@@ -286,6 +306,7 @@ export type ZonaMonitoreoUncheckedCreateInput = {
   nombre: string
   descripcion?: string | null
   activo?: boolean
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -296,6 +317,7 @@ export type ZonaMonitoreoUpdateInput = {
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  centroEducativo?: Prisma.CentroEducativoUpdateOneWithoutZonasNestedInput
 }
 
 export type ZonaMonitoreoUncheckedUpdateInput = {
@@ -303,6 +325,7 @@ export type ZonaMonitoreoUncheckedUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -312,6 +335,7 @@ export type ZonaMonitoreoCreateManyInput = {
   nombre: string
   descripcion?: string | null
   activo?: boolean
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -329,8 +353,19 @@ export type ZonaMonitoreoUncheckedUpdateManyInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ZonaMonitoreoListRelationFilter = {
+  every?: Prisma.ZonaMonitoreoWhereInput
+  some?: Prisma.ZonaMonitoreoWhereInput
+  none?: Prisma.ZonaMonitoreoWhereInput
+}
+
+export type ZonaMonitoreoOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ZonaMonitoreoCountOrderByAggregateInput = {
@@ -338,12 +373,14 @@ export type ZonaMonitoreoCountOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
   activo?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ZonaMonitoreoAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
 }
 
 export type ZonaMonitoreoMaxOrderByAggregateInput = {
@@ -351,6 +388,7 @@ export type ZonaMonitoreoMaxOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
   activo?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -360,12 +398,147 @@ export type ZonaMonitoreoMinOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   descripcion?: Prisma.SortOrder
   activo?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ZonaMonitoreoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
+}
+
+export type ZonaMonitoreoCreateNestedManyWithoutCentroEducativoInput = {
+  create?: Prisma.XOR<Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput, Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput> | Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput[] | Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput[]
+  connectOrCreate?: Prisma.ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput | Prisma.ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput[]
+  createMany?: Prisma.ZonaMonitoreoCreateManyCentroEducativoInputEnvelope
+  connect?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+}
+
+export type ZonaMonitoreoUncheckedCreateNestedManyWithoutCentroEducativoInput = {
+  create?: Prisma.XOR<Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput, Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput> | Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput[] | Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput[]
+  connectOrCreate?: Prisma.ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput | Prisma.ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput[]
+  createMany?: Prisma.ZonaMonitoreoCreateManyCentroEducativoInputEnvelope
+  connect?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+}
+
+export type ZonaMonitoreoUpdateManyWithoutCentroEducativoNestedInput = {
+  create?: Prisma.XOR<Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput, Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput> | Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput[] | Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput[]
+  connectOrCreate?: Prisma.ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput | Prisma.ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput[]
+  upsert?: Prisma.ZonaMonitoreoUpsertWithWhereUniqueWithoutCentroEducativoInput | Prisma.ZonaMonitoreoUpsertWithWhereUniqueWithoutCentroEducativoInput[]
+  createMany?: Prisma.ZonaMonitoreoCreateManyCentroEducativoInputEnvelope
+  set?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+  disconnect?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+  delete?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+  connect?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+  update?: Prisma.ZonaMonitoreoUpdateWithWhereUniqueWithoutCentroEducativoInput | Prisma.ZonaMonitoreoUpdateWithWhereUniqueWithoutCentroEducativoInput[]
+  updateMany?: Prisma.ZonaMonitoreoUpdateManyWithWhereWithoutCentroEducativoInput | Prisma.ZonaMonitoreoUpdateManyWithWhereWithoutCentroEducativoInput[]
+  deleteMany?: Prisma.ZonaMonitoreoScalarWhereInput | Prisma.ZonaMonitoreoScalarWhereInput[]
+}
+
+export type ZonaMonitoreoUncheckedUpdateManyWithoutCentroEducativoNestedInput = {
+  create?: Prisma.XOR<Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput, Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput> | Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput[] | Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput[]
+  connectOrCreate?: Prisma.ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput | Prisma.ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput[]
+  upsert?: Prisma.ZonaMonitoreoUpsertWithWhereUniqueWithoutCentroEducativoInput | Prisma.ZonaMonitoreoUpsertWithWhereUniqueWithoutCentroEducativoInput[]
+  createMany?: Prisma.ZonaMonitoreoCreateManyCentroEducativoInputEnvelope
+  set?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+  disconnect?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+  delete?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+  connect?: Prisma.ZonaMonitoreoWhereUniqueInput | Prisma.ZonaMonitoreoWhereUniqueInput[]
+  update?: Prisma.ZonaMonitoreoUpdateWithWhereUniqueWithoutCentroEducativoInput | Prisma.ZonaMonitoreoUpdateWithWhereUniqueWithoutCentroEducativoInput[]
+  updateMany?: Prisma.ZonaMonitoreoUpdateManyWithWhereWithoutCentroEducativoInput | Prisma.ZonaMonitoreoUpdateManyWithWhereWithoutCentroEducativoInput[]
+  deleteMany?: Prisma.ZonaMonitoreoScalarWhereInput | Prisma.ZonaMonitoreoScalarWhereInput[]
+}
+
+export type ZonaMonitoreoCreateWithoutCentroEducativoInput = {
+  nombre: string
+  descripcion?: string | null
+  activo?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput = {
+  id?: number
+  nombre: string
+  descripcion?: string | null
+  activo?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ZonaMonitoreoCreateOrConnectWithoutCentroEducativoInput = {
+  where: Prisma.ZonaMonitoreoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput, Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput>
+}
+
+export type ZonaMonitoreoCreateManyCentroEducativoInputEnvelope = {
+  data: Prisma.ZonaMonitoreoCreateManyCentroEducativoInput | Prisma.ZonaMonitoreoCreateManyCentroEducativoInput[]
+  skipDuplicates?: boolean
+}
+
+export type ZonaMonitoreoUpsertWithWhereUniqueWithoutCentroEducativoInput = {
+  where: Prisma.ZonaMonitoreoWhereUniqueInput
+  update: Prisma.XOR<Prisma.ZonaMonitoreoUpdateWithoutCentroEducativoInput, Prisma.ZonaMonitoreoUncheckedUpdateWithoutCentroEducativoInput>
+  create: Prisma.XOR<Prisma.ZonaMonitoreoCreateWithoutCentroEducativoInput, Prisma.ZonaMonitoreoUncheckedCreateWithoutCentroEducativoInput>
+}
+
+export type ZonaMonitoreoUpdateWithWhereUniqueWithoutCentroEducativoInput = {
+  where: Prisma.ZonaMonitoreoWhereUniqueInput
+  data: Prisma.XOR<Prisma.ZonaMonitoreoUpdateWithoutCentroEducativoInput, Prisma.ZonaMonitoreoUncheckedUpdateWithoutCentroEducativoInput>
+}
+
+export type ZonaMonitoreoUpdateManyWithWhereWithoutCentroEducativoInput = {
+  where: Prisma.ZonaMonitoreoScalarWhereInput
+  data: Prisma.XOR<Prisma.ZonaMonitoreoUpdateManyMutationInput, Prisma.ZonaMonitoreoUncheckedUpdateManyWithoutCentroEducativoInput>
+}
+
+export type ZonaMonitoreoScalarWhereInput = {
+  AND?: Prisma.ZonaMonitoreoScalarWhereInput | Prisma.ZonaMonitoreoScalarWhereInput[]
+  OR?: Prisma.ZonaMonitoreoScalarWhereInput[]
+  NOT?: Prisma.ZonaMonitoreoScalarWhereInput | Prisma.ZonaMonitoreoScalarWhereInput[]
+  id?: Prisma.IntFilter<"ZonaMonitoreo"> | number
+  nombre?: Prisma.StringFilter<"ZonaMonitoreo"> | string
+  descripcion?: Prisma.StringNullableFilter<"ZonaMonitoreo"> | string | null
+  activo?: Prisma.BoolFilter<"ZonaMonitoreo"> | boolean
+  centroEducativoId?: Prisma.IntNullableFilter<"ZonaMonitoreo"> | number | null
+  createdAt?: Prisma.DateTimeFilter<"ZonaMonitoreo"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"ZonaMonitoreo"> | Date | string
+}
+
+export type ZonaMonitoreoCreateManyCentroEducativoInput = {
+  id?: number
+  nombre: string
+  descripcion?: string | null
+  activo?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ZonaMonitoreoUpdateWithoutCentroEducativoInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ZonaMonitoreoUncheckedUpdateWithoutCentroEducativoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ZonaMonitoreoUncheckedUpdateManyWithoutCentroEducativoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  descripcion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -375,8 +548,10 @@ export type ZonaMonitoreoSelect<ExtArgs extends runtime.Types.Extensions.Interna
   nombre?: boolean
   descripcion?: boolean
   activo?: boolean
+  centroEducativoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  centroEducativo?: boolean | Prisma.ZonaMonitoreo$centroEducativoArgs<ExtArgs>
 }, ExtArgs["result"]["zonaMonitoreo"]>
 
 export type ZonaMonitoreoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -384,8 +559,10 @@ export type ZonaMonitoreoSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   nombre?: boolean
   descripcion?: boolean
   activo?: boolean
+  centroEducativoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  centroEducativo?: boolean | Prisma.ZonaMonitoreo$centroEducativoArgs<ExtArgs>
 }, ExtArgs["result"]["zonaMonitoreo"]>
 
 export type ZonaMonitoreoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -393,8 +570,10 @@ export type ZonaMonitoreoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   nombre?: boolean
   descripcion?: boolean
   activo?: boolean
+  centroEducativoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  centroEducativo?: boolean | Prisma.ZonaMonitoreo$centroEducativoArgs<ExtArgs>
 }, ExtArgs["result"]["zonaMonitoreo"]>
 
 export type ZonaMonitoreoSelectScalar = {
@@ -402,20 +581,33 @@ export type ZonaMonitoreoSelectScalar = {
   nombre?: boolean
   descripcion?: boolean
   activo?: boolean
+  centroEducativoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ZonaMonitoreoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "descripcion" | "activo" | "createdAt" | "updatedAt", ExtArgs["result"]["zonaMonitoreo"]>
+export type ZonaMonitoreoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "descripcion" | "activo" | "centroEducativoId" | "createdAt" | "updatedAt", ExtArgs["result"]["zonaMonitoreo"]>
+export type ZonaMonitoreoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  centroEducativo?: boolean | Prisma.ZonaMonitoreo$centroEducativoArgs<ExtArgs>
+}
+export type ZonaMonitoreoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  centroEducativo?: boolean | Prisma.ZonaMonitoreo$centroEducativoArgs<ExtArgs>
+}
+export type ZonaMonitoreoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  centroEducativo?: boolean | Prisma.ZonaMonitoreo$centroEducativoArgs<ExtArgs>
+}
 
 export type $ZonaMonitoreoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ZonaMonitoreo"
-  objects: {}
+  objects: {
+    centroEducativo: Prisma.$CentroEducativoPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     nombre: string
     descripcion: string | null
     activo: boolean
+    centroEducativoId: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["zonaMonitoreo"]>
@@ -812,6 +1004,7 @@ readonly fields: ZonaMonitoreoFieldRefs;
  */
 export interface Prisma__ZonaMonitoreoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  centroEducativo<T extends Prisma.ZonaMonitoreo$centroEducativoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ZonaMonitoreo$centroEducativoArgs<ExtArgs>>): Prisma.Prisma__CentroEducativoClient<runtime.Types.Result.GetResult<Prisma.$CentroEducativoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -845,6 +1038,7 @@ export interface ZonaMonitoreoFieldRefs {
   readonly nombre: Prisma.FieldRef<"ZonaMonitoreo", 'String'>
   readonly descripcion: Prisma.FieldRef<"ZonaMonitoreo", 'String'>
   readonly activo: Prisma.FieldRef<"ZonaMonitoreo", 'Boolean'>
+  readonly centroEducativoId: Prisma.FieldRef<"ZonaMonitoreo", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ZonaMonitoreo", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ZonaMonitoreo", 'DateTime'>
 }
@@ -864,6 +1058,10 @@ export type ZonaMonitoreoFindUniqueArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
+  /**
    * Filter, which ZonaMonitoreo to fetch.
    */
   where: Prisma.ZonaMonitoreoWhereUniqueInput
@@ -882,6 +1080,10 @@ export type ZonaMonitoreoFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
+  /**
    * Filter, which ZonaMonitoreo to fetch.
    */
   where: Prisma.ZonaMonitoreoWhereUniqueInput
@@ -899,6 +1101,10 @@ export type ZonaMonitoreoFindFirstArgs<ExtArgs extends runtime.Types.Extensions.
    * Omit specific fields from the ZonaMonitoreo
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
   /**
    * Filter, which ZonaMonitoreo to fetch.
    */
@@ -948,6 +1154,10 @@ export type ZonaMonitoreoFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
+  /**
    * Filter, which ZonaMonitoreo to fetch.
    */
   where?: Prisma.ZonaMonitoreoWhereInput
@@ -995,6 +1205,10 @@ export type ZonaMonitoreoFindManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the ZonaMonitoreo
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
   /**
    * Filter, which ZonaMonitoreos to fetch.
    */
@@ -1044,6 +1258,10 @@ export type ZonaMonitoreoCreateArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
+  /**
    * The data needed to create a ZonaMonitoreo.
    */
   data: Prisma.XOR<Prisma.ZonaMonitoreoCreateInput, Prisma.ZonaMonitoreoUncheckedCreateInput>
@@ -1077,6 +1295,10 @@ export type ZonaMonitoreoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    */
   data: Prisma.ZonaMonitoreoCreateManyInput | Prisma.ZonaMonitoreoCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1091,6 +1313,10 @@ export type ZonaMonitoreoUpdateArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the ZonaMonitoreo
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
   /**
    * The data needed to update a ZonaMonitoreo.
    */
@@ -1143,6 +1369,10 @@ export type ZonaMonitoreoUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * Limit how many ZonaMonitoreos to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1157,6 +1387,10 @@ export type ZonaMonitoreoUpsertArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the ZonaMonitoreo
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
   /**
    * The filter to search for the ZonaMonitoreo to update in case it exists.
    */
@@ -1184,6 +1418,10 @@ export type ZonaMonitoreoDeleteArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
+  /**
    * Filter which ZonaMonitoreo to delete.
    */
   where: Prisma.ZonaMonitoreoWhereUniqueInput
@@ -1204,6 +1442,25 @@ export type ZonaMonitoreoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
+ * ZonaMonitoreo.centroEducativo
+ */
+export type ZonaMonitoreo$centroEducativoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CentroEducativo
+   */
+  select?: Prisma.CentroEducativoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CentroEducativo
+   */
+  omit?: Prisma.CentroEducativoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CentroEducativoInclude<ExtArgs> | null
+  where?: Prisma.CentroEducativoWhereInput
+}
+
+/**
  * ZonaMonitoreo without action
  */
 export type ZonaMonitoreoDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1215,4 +1472,8 @@ export type ZonaMonitoreoDefaultArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the ZonaMonitoreo
    */
   omit?: Prisma.ZonaMonitoreoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ZonaMonitoreoInclude<ExtArgs> | null
 }

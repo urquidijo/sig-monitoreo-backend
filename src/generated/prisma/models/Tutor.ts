@@ -28,10 +28,12 @@ export type AggregateTutor = {
 
 export type TutorAvgAggregateOutputType = {
   id: number | null
+  usuarioId: number | null
 }
 
 export type TutorSumAggregateOutputType = {
   id: number | null
+  usuarioId: number | null
 }
 
 export type TutorMinAggregateOutputType = {
@@ -39,6 +41,7 @@ export type TutorMinAggregateOutputType = {
   nombre: string | null
   telefono: string | null
   email: string | null
+  usuarioId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -48,6 +51,7 @@ export type TutorMaxAggregateOutputType = {
   nombre: string | null
   telefono: string | null
   email: string | null
+  usuarioId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -57,6 +61,7 @@ export type TutorCountAggregateOutputType = {
   nombre: number
   telefono: number
   email: number
+  usuarioId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -65,10 +70,12 @@ export type TutorCountAggregateOutputType = {
 
 export type TutorAvgAggregateInputType = {
   id?: true
+  usuarioId?: true
 }
 
 export type TutorSumAggregateInputType = {
   id?: true
+  usuarioId?: true
 }
 
 export type TutorMinAggregateInputType = {
@@ -76,6 +83,7 @@ export type TutorMinAggregateInputType = {
   nombre?: true
   telefono?: true
   email?: true
+  usuarioId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -85,6 +93,7 @@ export type TutorMaxAggregateInputType = {
   nombre?: true
   telefono?: true
   email?: true
+  usuarioId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -94,6 +103,7 @@ export type TutorCountAggregateInputType = {
   nombre?: true
   telefono?: true
   email?: true
+  usuarioId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -190,6 +200,7 @@ export type TutorGroupByOutputType = {
   nombre: string
   telefono: string | null
   email: string | null
+  usuarioId: number | null
   createdAt: Date
   updatedAt: Date
   _count: TutorCountAggregateOutputType | null
@@ -222,9 +233,11 @@ export type TutorWhereInput = {
   nombre?: Prisma.StringFilter<"Tutor"> | string
   telefono?: Prisma.StringNullableFilter<"Tutor"> | string | null
   email?: Prisma.StringNullableFilter<"Tutor"> | string | null
+  usuarioId?: Prisma.IntNullableFilter<"Tutor"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Tutor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tutor"> | Date | string
   ninos?: Prisma.NinoListRelationFilter
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
 }
 
 export type TutorOrderByWithRelationInput = {
@@ -232,14 +245,17 @@ export type TutorOrderByWithRelationInput = {
   nombre?: Prisma.SortOrder
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  usuarioId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ninos?: Prisma.NinoOrderByRelationAggregateInput
+  usuario?: Prisma.UsuarioOrderByWithRelationInput
 }
 
 export type TutorWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   email?: string
+  usuarioId?: number
   AND?: Prisma.TutorWhereInput | Prisma.TutorWhereInput[]
   OR?: Prisma.TutorWhereInput[]
   NOT?: Prisma.TutorWhereInput | Prisma.TutorWhereInput[]
@@ -248,13 +264,15 @@ export type TutorWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Tutor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tutor"> | Date | string
   ninos?: Prisma.NinoListRelationFilter
-}, "id" | "email">
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
+}, "id" | "email" | "usuarioId">
 
 export type TutorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  usuarioId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TutorCountOrderByAggregateInput
@@ -272,6 +290,7 @@ export type TutorScalarWhereWithAggregatesInput = {
   nombre?: Prisma.StringWithAggregatesFilter<"Tutor"> | string
   telefono?: Prisma.StringNullableWithAggregatesFilter<"Tutor"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"Tutor"> | string | null
+  usuarioId?: Prisma.IntNullableWithAggregatesFilter<"Tutor"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tutor"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tutor"> | Date | string
 }
@@ -283,6 +302,7 @@ export type TutorCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   ninos?: Prisma.NinoCreateNestedManyWithoutTutorInput
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutTutorInput
 }
 
 export type TutorUncheckedCreateInput = {
@@ -290,6 +310,7 @@ export type TutorUncheckedCreateInput = {
   nombre: string
   telefono?: string | null
   email?: string | null
+  usuarioId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ninos?: Prisma.NinoUncheckedCreateNestedManyWithoutTutorInput
@@ -302,6 +323,7 @@ export type TutorUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ninos?: Prisma.NinoUpdateManyWithoutTutorNestedInput
+  usuario?: Prisma.UsuarioUpdateOneWithoutTutorNestedInput
 }
 
 export type TutorUncheckedUpdateInput = {
@@ -309,6 +331,7 @@ export type TutorUncheckedUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ninos?: Prisma.NinoUncheckedUpdateManyWithoutTutorNestedInput
@@ -319,6 +342,7 @@ export type TutorCreateManyInput = {
   nombre: string
   telefono?: string | null
   email?: string | null
+  usuarioId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -336,8 +360,14 @@ export type TutorUncheckedUpdateManyInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TutorNullableScalarRelationFilter = {
+  is?: Prisma.TutorWhereInput | null
+  isNot?: Prisma.TutorWhereInput | null
 }
 
 export type TutorCountOrderByAggregateInput = {
@@ -345,12 +375,14 @@ export type TutorCountOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type TutorAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
 }
 
 export type TutorMaxOrderByAggregateInput = {
@@ -358,6 +390,7 @@ export type TutorMaxOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -367,33 +400,54 @@ export type TutorMinOrderByAggregateInput = {
   nombre?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type TutorSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
 }
 
-export type TutorScalarRelationFilter = {
-  is?: Prisma.TutorWhereInput
-  isNot?: Prisma.TutorWhereInput
+export type TutorCreateNestedOneWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.TutorCreateWithoutUsuarioInput, Prisma.TutorUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.TutorCreateOrConnectWithoutUsuarioInput
+  connect?: Prisma.TutorWhereUniqueInput
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type TutorUncheckedCreateNestedOneWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.TutorCreateWithoutUsuarioInput, Prisma.TutorUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.TutorCreateOrConnectWithoutUsuarioInput
+  connect?: Prisma.TutorWhereUniqueInput
+}
+
+export type TutorUpdateOneWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.TutorCreateWithoutUsuarioInput, Prisma.TutorUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.TutorCreateOrConnectWithoutUsuarioInput
+  upsert?: Prisma.TutorUpsertWithoutUsuarioInput
+  disconnect?: Prisma.TutorWhereInput | boolean
+  delete?: Prisma.TutorWhereInput | boolean
+  connect?: Prisma.TutorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TutorUpdateToOneWithWhereWithoutUsuarioInput, Prisma.TutorUpdateWithoutUsuarioInput>, Prisma.TutorUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type TutorUncheckedUpdateOneWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.TutorCreateWithoutUsuarioInput, Prisma.TutorUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.TutorCreateOrConnectWithoutUsuarioInput
+  upsert?: Prisma.TutorUpsertWithoutUsuarioInput
+  disconnect?: Prisma.TutorWhereInput | boolean
+  delete?: Prisma.TutorWhereInput | boolean
+  connect?: Prisma.TutorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TutorUpdateToOneWithWhereWithoutUsuarioInput, Prisma.TutorUpdateWithoutUsuarioInput>, Prisma.TutorUncheckedUpdateWithoutUsuarioInput>
 }
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
   increment?: number
   decrement?: number
   multiply?: number
@@ -406,12 +460,68 @@ export type TutorCreateNestedOneWithoutNinosInput = {
   connect?: Prisma.TutorWhereUniqueInput
 }
 
-export type TutorUpdateOneRequiredWithoutNinosNestedInput = {
+export type TutorUpdateOneWithoutNinosNestedInput = {
   create?: Prisma.XOR<Prisma.TutorCreateWithoutNinosInput, Prisma.TutorUncheckedCreateWithoutNinosInput>
   connectOrCreate?: Prisma.TutorCreateOrConnectWithoutNinosInput
   upsert?: Prisma.TutorUpsertWithoutNinosInput
+  disconnect?: Prisma.TutorWhereInput | boolean
+  delete?: Prisma.TutorWhereInput | boolean
   connect?: Prisma.TutorWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.TutorUpdateToOneWithWhereWithoutNinosInput, Prisma.TutorUpdateWithoutNinosInput>, Prisma.TutorUncheckedUpdateWithoutNinosInput>
+}
+
+export type TutorCreateWithoutUsuarioInput = {
+  nombre: string
+  telefono?: string | null
+  email?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ninos?: Prisma.NinoCreateNestedManyWithoutTutorInput
+}
+
+export type TutorUncheckedCreateWithoutUsuarioInput = {
+  id?: number
+  nombre: string
+  telefono?: string | null
+  email?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ninos?: Prisma.NinoUncheckedCreateNestedManyWithoutTutorInput
+}
+
+export type TutorCreateOrConnectWithoutUsuarioInput = {
+  where: Prisma.TutorWhereUniqueInput
+  create: Prisma.XOR<Prisma.TutorCreateWithoutUsuarioInput, Prisma.TutorUncheckedCreateWithoutUsuarioInput>
+}
+
+export type TutorUpsertWithoutUsuarioInput = {
+  update: Prisma.XOR<Prisma.TutorUpdateWithoutUsuarioInput, Prisma.TutorUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.TutorCreateWithoutUsuarioInput, Prisma.TutorUncheckedCreateWithoutUsuarioInput>
+  where?: Prisma.TutorWhereInput
+}
+
+export type TutorUpdateToOneWithWhereWithoutUsuarioInput = {
+  where?: Prisma.TutorWhereInput
+  data: Prisma.XOR<Prisma.TutorUpdateWithoutUsuarioInput, Prisma.TutorUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type TutorUpdateWithoutUsuarioInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ninos?: Prisma.NinoUpdateManyWithoutTutorNestedInput
+}
+
+export type TutorUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ninos?: Prisma.NinoUncheckedUpdateManyWithoutTutorNestedInput
 }
 
 export type TutorCreateWithoutNinosInput = {
@@ -420,6 +530,7 @@ export type TutorCreateWithoutNinosInput = {
   email?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutTutorInput
 }
 
 export type TutorUncheckedCreateWithoutNinosInput = {
@@ -427,6 +538,7 @@ export type TutorUncheckedCreateWithoutNinosInput = {
   nombre: string
   telefono?: string | null
   email?: string | null
+  usuarioId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -453,6 +565,7 @@ export type TutorUpdateWithoutNinosInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usuario?: Prisma.UsuarioUpdateOneWithoutTutorNestedInput
 }
 
 export type TutorUncheckedUpdateWithoutNinosInput = {
@@ -460,6 +573,7 @@ export type TutorUncheckedUpdateWithoutNinosInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usuarioId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -500,9 +614,11 @@ export type TutorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   nombre?: boolean
   telefono?: boolean
   email?: boolean
+  usuarioId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   ninos?: boolean | Prisma.Tutor$ninosArgs<ExtArgs>
+  usuario?: boolean | Prisma.Tutor$usuarioArgs<ExtArgs>
   _count?: boolean | Prisma.TutorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tutor"]>
 
@@ -511,8 +627,10 @@ export type TutorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   nombre?: boolean
   telefono?: boolean
   email?: boolean
+  usuarioId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  usuario?: boolean | Prisma.Tutor$usuarioArgs<ExtArgs>
 }, ExtArgs["result"]["tutor"]>
 
 export type TutorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -520,8 +638,10 @@ export type TutorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   nombre?: boolean
   telefono?: boolean
   email?: boolean
+  usuarioId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  usuario?: boolean | Prisma.Tutor$usuarioArgs<ExtArgs>
 }, ExtArgs["result"]["tutor"]>
 
 export type TutorSelectScalar = {
@@ -529,28 +649,36 @@ export type TutorSelectScalar = {
   nombre?: boolean
   telefono?: boolean
   email?: boolean
+  usuarioId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TutorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "telefono" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["tutor"]>
+export type TutorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "telefono" | "email" | "usuarioId" | "createdAt" | "updatedAt", ExtArgs["result"]["tutor"]>
 export type TutorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ninos?: boolean | Prisma.Tutor$ninosArgs<ExtArgs>
+  usuario?: boolean | Prisma.Tutor$usuarioArgs<ExtArgs>
   _count?: boolean | Prisma.TutorCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type TutorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type TutorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type TutorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.Tutor$usuarioArgs<ExtArgs>
+}
+export type TutorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  usuario?: boolean | Prisma.Tutor$usuarioArgs<ExtArgs>
+}
 
 export type $TutorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tutor"
   objects: {
     ninos: Prisma.$NinoPayload<ExtArgs>[]
+    usuario: Prisma.$UsuarioPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     nombre: string
     telefono: string | null
     email: string | null
+    usuarioId: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["tutor"]>
@@ -948,6 +1076,7 @@ readonly fields: TutorFieldRefs;
 export interface Prisma__TutorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   ninos<T extends Prisma.Tutor$ninosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tutor$ninosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NinoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usuario<T extends Prisma.Tutor$usuarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tutor$usuarioArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -981,6 +1110,7 @@ export interface TutorFieldRefs {
   readonly nombre: Prisma.FieldRef<"Tutor", 'String'>
   readonly telefono: Prisma.FieldRef<"Tutor", 'String'>
   readonly email: Prisma.FieldRef<"Tutor", 'String'>
+  readonly usuarioId: Prisma.FieldRef<"Tutor", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Tutor", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Tutor", 'DateTime'>
 }
@@ -1237,6 +1367,10 @@ export type TutorCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    */
   data: Prisma.TutorCreateManyInput | Prisma.TutorCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TutorIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1307,6 +1441,10 @@ export type TutorUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many Tutors to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TutorIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1397,6 +1535,25 @@ export type Tutor$ninosArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.NinoScalarFieldEnum | Prisma.NinoScalarFieldEnum[]
+}
+
+/**
+ * Tutor.usuario
+ */
+export type Tutor$usuarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Usuario
+   */
+  select?: Prisma.UsuarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Usuario
+   */
+  omit?: Prisma.UsuarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsuarioInclude<ExtArgs> | null
+  where?: Prisma.UsuarioWhereInput
 }
 
 /**

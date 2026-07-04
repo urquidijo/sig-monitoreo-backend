@@ -51,8 +51,11 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Usuario: 'Usuario',
   Tutor: 'Tutor',
+  CentroEducativo: 'CentroEducativo',
   Nino: 'Nino',
+  CodigoAfiliacion: 'CodigoAfiliacion',
   CodigoVinculacion: 'CodigoVinculacion',
   Dispositivo: 'Dispositivo',
   ZonaMonitoreo: 'ZonaMonitoreo',
@@ -76,11 +79,26 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const UsuarioScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  rol: 'rol',
+  activo: 'activo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
 export const TutorScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   telefono: 'telefono',
   email: 'email',
+  usuarioId: 'usuarioId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -88,16 +106,43 @@ export const TutorScalarFieldEnum = {
 export type TutorScalarFieldEnum = (typeof TutorScalarFieldEnum)[keyof typeof TutorScalarFieldEnum]
 
 
+export const CentroEducativoScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  direccion: 'direccion',
+  telefono: 'telefono',
+  activo: 'activo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CentroEducativoScalarFieldEnum = (typeof CentroEducativoScalarFieldEnum)[keyof typeof CentroEducativoScalarFieldEnum]
+
+
 export const NinoScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   edad: 'edad',
+  activo: 'activo',
   tutorId: 'tutorId',
+  centroEducativoId: 'centroEducativoId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type NinoScalarFieldEnum = (typeof NinoScalarFieldEnum)[keyof typeof NinoScalarFieldEnum]
+
+
+export const CodigoAfiliacionScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  ninoId: 'ninoId',
+  usado: 'usado',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CodigoAfiliacionScalarFieldEnum = (typeof CodigoAfiliacionScalarFieldEnum)[keyof typeof CodigoAfiliacionScalarFieldEnum]
 
 
 export const CodigoVinculacionScalarFieldEnum = {
@@ -130,6 +175,7 @@ export const ZonaMonitoreoScalarFieldEnum = {
   nombre: 'nombre',
   descripcion: 'descripcion',
   activo: 'activo',
+  centroEducativoId: 'centroEducativoId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

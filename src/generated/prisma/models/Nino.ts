@@ -30,19 +30,23 @@ export type NinoAvgAggregateOutputType = {
   id: number | null
   edad: number | null
   tutorId: number | null
+  centroEducativoId: number | null
 }
 
 export type NinoSumAggregateOutputType = {
   id: number | null
   edad: number | null
   tutorId: number | null
+  centroEducativoId: number | null
 }
 
 export type NinoMinAggregateOutputType = {
   id: number | null
   nombre: string | null
   edad: number | null
+  activo: boolean | null
   tutorId: number | null
+  centroEducativoId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -51,7 +55,9 @@ export type NinoMaxAggregateOutputType = {
   id: number | null
   nombre: string | null
   edad: number | null
+  activo: boolean | null
   tutorId: number | null
+  centroEducativoId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -60,7 +66,9 @@ export type NinoCountAggregateOutputType = {
   id: number
   nombre: number
   edad: number
+  activo: number
   tutorId: number
+  centroEducativoId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -71,19 +79,23 @@ export type NinoAvgAggregateInputType = {
   id?: true
   edad?: true
   tutorId?: true
+  centroEducativoId?: true
 }
 
 export type NinoSumAggregateInputType = {
   id?: true
   edad?: true
   tutorId?: true
+  centroEducativoId?: true
 }
 
 export type NinoMinAggregateInputType = {
   id?: true
   nombre?: true
   edad?: true
+  activo?: true
   tutorId?: true
+  centroEducativoId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -92,7 +104,9 @@ export type NinoMaxAggregateInputType = {
   id?: true
   nombre?: true
   edad?: true
+  activo?: true
   tutorId?: true
+  centroEducativoId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -101,7 +115,9 @@ export type NinoCountAggregateInputType = {
   id?: true
   nombre?: true
   edad?: true
+  activo?: true
   tutorId?: true
+  centroEducativoId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -197,7 +213,9 @@ export type NinoGroupByOutputType = {
   id: number
   nombre: string
   edad: number | null
-  tutorId: number
+  activo: boolean
+  tutorId: number | null
+  centroEducativoId: number | null
   createdAt: Date
   updatedAt: Date
   _count: NinoCountAggregateOutputType | null
@@ -229,28 +247,36 @@ export type NinoWhereInput = {
   id?: Prisma.IntFilter<"Nino"> | number
   nombre?: Prisma.StringFilter<"Nino"> | string
   edad?: Prisma.IntNullableFilter<"Nino"> | number | null
-  tutorId?: Prisma.IntFilter<"Nino"> | number
+  activo?: Prisma.BoolFilter<"Nino"> | boolean
+  tutorId?: Prisma.IntNullableFilter<"Nino"> | number | null
+  centroEducativoId?: Prisma.IntNullableFilter<"Nino"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Nino"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Nino"> | Date | string
-  tutor?: Prisma.XOR<Prisma.TutorScalarRelationFilter, Prisma.TutorWhereInput>
+  tutor?: Prisma.XOR<Prisma.TutorNullableScalarRelationFilter, Prisma.TutorWhereInput> | null
+  centroEducativo?: Prisma.XOR<Prisma.CentroEducativoNullableScalarRelationFilter, Prisma.CentroEducativoWhereInput> | null
   posiciones?: Prisma.PosicionNinoListRelationFilter
   alertas?: Prisma.AlertaListRelationFilter
   dispositivos?: Prisma.DispositivoListRelationFilter
   codigosVinculacion?: Prisma.CodigoVinculacionListRelationFilter
+  codigosAfiliacion?: Prisma.CodigoAfiliacionListRelationFilter
 }
 
 export type NinoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   edad?: Prisma.SortOrderInput | Prisma.SortOrder
-  tutorId?: Prisma.SortOrder
+  activo?: Prisma.SortOrder
+  tutorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   tutor?: Prisma.TutorOrderByWithRelationInput
+  centroEducativo?: Prisma.CentroEducativoOrderByWithRelationInput
   posiciones?: Prisma.PosicionNinoOrderByRelationAggregateInput
   alertas?: Prisma.AlertaOrderByRelationAggregateInput
   dispositivos?: Prisma.DispositivoOrderByRelationAggregateInput
   codigosVinculacion?: Prisma.CodigoVinculacionOrderByRelationAggregateInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionOrderByRelationAggregateInput
 }
 
 export type NinoWhereUniqueInput = Prisma.AtLeast<{
@@ -260,21 +286,27 @@ export type NinoWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.NinoWhereInput | Prisma.NinoWhereInput[]
   nombre?: Prisma.StringFilter<"Nino"> | string
   edad?: Prisma.IntNullableFilter<"Nino"> | number | null
-  tutorId?: Prisma.IntFilter<"Nino"> | number
+  activo?: Prisma.BoolFilter<"Nino"> | boolean
+  tutorId?: Prisma.IntNullableFilter<"Nino"> | number | null
+  centroEducativoId?: Prisma.IntNullableFilter<"Nino"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Nino"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Nino"> | Date | string
-  tutor?: Prisma.XOR<Prisma.TutorScalarRelationFilter, Prisma.TutorWhereInput>
+  tutor?: Prisma.XOR<Prisma.TutorNullableScalarRelationFilter, Prisma.TutorWhereInput> | null
+  centroEducativo?: Prisma.XOR<Prisma.CentroEducativoNullableScalarRelationFilter, Prisma.CentroEducativoWhereInput> | null
   posiciones?: Prisma.PosicionNinoListRelationFilter
   alertas?: Prisma.AlertaListRelationFilter
   dispositivos?: Prisma.DispositivoListRelationFilter
   codigosVinculacion?: Prisma.CodigoVinculacionListRelationFilter
+  codigosAfiliacion?: Prisma.CodigoAfiliacionListRelationFilter
 }, "id">
 
 export type NinoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   edad?: Prisma.SortOrderInput | Prisma.SortOrder
-  tutorId?: Prisma.SortOrder
+  activo?: Prisma.SortOrder
+  tutorId?: Prisma.SortOrderInput | Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.NinoCountOrderByAggregateInput
@@ -291,7 +323,9 @@ export type NinoScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Nino"> | number
   nombre?: Prisma.StringWithAggregatesFilter<"Nino"> | string
   edad?: Prisma.IntNullableWithAggregatesFilter<"Nino"> | number | null
-  tutorId?: Prisma.IntWithAggregatesFilter<"Nino"> | number
+  activo?: Prisma.BoolWithAggregatesFilter<"Nino"> | boolean
+  tutorId?: Prisma.IntNullableWithAggregatesFilter<"Nino"> | number | null
+  centroEducativoId?: Prisma.IntNullableWithAggregatesFilter<"Nino"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Nino"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Nino"> | Date | string
 }
@@ -299,58 +333,72 @@ export type NinoScalarWhereWithAggregatesInput = {
 export type NinoCreateInput = {
   nombre: string
   edad?: number | null
+  activo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
+  tutor?: Prisma.TutorCreateNestedOneWithoutNinosInput
+  centroEducativo?: Prisma.CentroEducativoCreateNestedOneWithoutNinosInput
   posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateInput = {
   id?: number
   nombre: string
   edad?: number | null
-  tutorId: number
+  activo?: boolean
+  tutorId?: number | null
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
+  tutor?: Prisma.TutorUpdateOneWithoutNinosNestedInput
+  centroEducativo?: Prisma.CentroEducativoUpdateOneWithoutNinosNestedInput
   posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  tutorId?: Prisma.IntFieldUpdateOperationsInput | number
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateManyInput = {
   id?: number
   nombre: string
   edad?: number | null
-  tutorId: number
+  activo?: boolean
+  tutorId?: number | null
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -358,6 +406,7 @@ export type NinoCreateManyInput = {
 export type NinoUpdateManyMutationInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -366,7 +415,9 @@ export type NinoUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  tutorId?: Prisma.IntFieldUpdateOperationsInput | number
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -385,7 +436,9 @@ export type NinoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   edad?: Prisma.SortOrder
+  activo?: Prisma.SortOrder
   tutorId?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -394,13 +447,16 @@ export type NinoAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   edad?: Prisma.SortOrder
   tutorId?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
 }
 
 export type NinoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   edad?: Prisma.SortOrder
+  activo?: Prisma.SortOrder
   tutorId?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -409,7 +465,9 @@ export type NinoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   edad?: Prisma.SortOrder
+  activo?: Prisma.SortOrder
   tutorId?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -418,6 +476,7 @@ export type NinoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   edad?: Prisma.SortOrder
   tutorId?: Prisma.SortOrder
+  centroEducativoId?: Prisma.SortOrder
 }
 
 export type NinoScalarRelationFilter = {
@@ -467,12 +526,60 @@ export type NinoUncheckedUpdateManyWithoutTutorNestedInput = {
   deleteMany?: Prisma.NinoScalarWhereInput | Prisma.NinoScalarWhereInput[]
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type NinoCreateNestedManyWithoutCentroEducativoInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutCentroEducativoInput, Prisma.NinoUncheckedCreateWithoutCentroEducativoInput> | Prisma.NinoCreateWithoutCentroEducativoInput[] | Prisma.NinoUncheckedCreateWithoutCentroEducativoInput[]
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutCentroEducativoInput | Prisma.NinoCreateOrConnectWithoutCentroEducativoInput[]
+  createMany?: Prisma.NinoCreateManyCentroEducativoInputEnvelope
+  connect?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+}
+
+export type NinoUncheckedCreateNestedManyWithoutCentroEducativoInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutCentroEducativoInput, Prisma.NinoUncheckedCreateWithoutCentroEducativoInput> | Prisma.NinoCreateWithoutCentroEducativoInput[] | Prisma.NinoUncheckedCreateWithoutCentroEducativoInput[]
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutCentroEducativoInput | Prisma.NinoCreateOrConnectWithoutCentroEducativoInput[]
+  createMany?: Prisma.NinoCreateManyCentroEducativoInputEnvelope
+  connect?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+}
+
+export type NinoUpdateManyWithoutCentroEducativoNestedInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutCentroEducativoInput, Prisma.NinoUncheckedCreateWithoutCentroEducativoInput> | Prisma.NinoCreateWithoutCentroEducativoInput[] | Prisma.NinoUncheckedCreateWithoutCentroEducativoInput[]
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutCentroEducativoInput | Prisma.NinoCreateOrConnectWithoutCentroEducativoInput[]
+  upsert?: Prisma.NinoUpsertWithWhereUniqueWithoutCentroEducativoInput | Prisma.NinoUpsertWithWhereUniqueWithoutCentroEducativoInput[]
+  createMany?: Prisma.NinoCreateManyCentroEducativoInputEnvelope
+  set?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+  disconnect?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+  delete?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+  connect?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+  update?: Prisma.NinoUpdateWithWhereUniqueWithoutCentroEducativoInput | Prisma.NinoUpdateWithWhereUniqueWithoutCentroEducativoInput[]
+  updateMany?: Prisma.NinoUpdateManyWithWhereWithoutCentroEducativoInput | Prisma.NinoUpdateManyWithWhereWithoutCentroEducativoInput[]
+  deleteMany?: Prisma.NinoScalarWhereInput | Prisma.NinoScalarWhereInput[]
+}
+
+export type NinoUncheckedUpdateManyWithoutCentroEducativoNestedInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutCentroEducativoInput, Prisma.NinoUncheckedCreateWithoutCentroEducativoInput> | Prisma.NinoCreateWithoutCentroEducativoInput[] | Prisma.NinoUncheckedCreateWithoutCentroEducativoInput[]
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutCentroEducativoInput | Prisma.NinoCreateOrConnectWithoutCentroEducativoInput[]
+  upsert?: Prisma.NinoUpsertWithWhereUniqueWithoutCentroEducativoInput | Prisma.NinoUpsertWithWhereUniqueWithoutCentroEducativoInput[]
+  createMany?: Prisma.NinoCreateManyCentroEducativoInputEnvelope
+  set?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+  disconnect?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+  delete?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+  connect?: Prisma.NinoWhereUniqueInput | Prisma.NinoWhereUniqueInput[]
+  update?: Prisma.NinoUpdateWithWhereUniqueWithoutCentroEducativoInput | Prisma.NinoUpdateWithWhereUniqueWithoutCentroEducativoInput[]
+  updateMany?: Prisma.NinoUpdateManyWithWhereWithoutCentroEducativoInput | Prisma.NinoUpdateManyWithWhereWithoutCentroEducativoInput[]
+  deleteMany?: Prisma.NinoScalarWhereInput | Prisma.NinoScalarWhereInput[]
+}
+
+export type NinoCreateNestedOneWithoutCodigosAfiliacionInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutCodigosAfiliacionInput, Prisma.NinoUncheckedCreateWithoutCodigosAfiliacionInput>
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutCodigosAfiliacionInput
+  connect?: Prisma.NinoWhereUniqueInput
+}
+
+export type NinoUpdateOneRequiredWithoutCodigosAfiliacionNestedInput = {
+  create?: Prisma.XOR<Prisma.NinoCreateWithoutCodigosAfiliacionInput, Prisma.NinoUncheckedCreateWithoutCodigosAfiliacionInput>
+  connectOrCreate?: Prisma.NinoCreateOrConnectWithoutCodigosAfiliacionInput
+  upsert?: Prisma.NinoUpsertWithoutCodigosAfiliacionInput
+  connect?: Prisma.NinoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.NinoUpdateToOneWithWhereWithoutCodigosAfiliacionInput, Prisma.NinoUpdateWithoutCodigosAfiliacionInput>, Prisma.NinoUncheckedUpdateWithoutCodigosAfiliacionInput>
 }
 
 export type NinoCreateNestedOneWithoutCodigosVinculacionInput = {
@@ -534,24 +641,30 @@ export type NinoUpdateOneRequiredWithoutAlertasNestedInput = {
 export type NinoCreateWithoutTutorInput = {
   nombre: string
   edad?: number | null
+  activo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  centroEducativo?: Prisma.CentroEducativoCreateNestedOneWithoutNinosInput
   posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateWithoutTutorInput = {
   id?: number
   nombre: string
   edad?: number | null
+  activo?: boolean
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoCreateOrConnectWithoutTutorInput = {
@@ -587,32 +700,169 @@ export type NinoScalarWhereInput = {
   id?: Prisma.IntFilter<"Nino"> | number
   nombre?: Prisma.StringFilter<"Nino"> | string
   edad?: Prisma.IntNullableFilter<"Nino"> | number | null
-  tutorId?: Prisma.IntFilter<"Nino"> | number
+  activo?: Prisma.BoolFilter<"Nino"> | boolean
+  tutorId?: Prisma.IntNullableFilter<"Nino"> | number | null
+  centroEducativoId?: Prisma.IntNullableFilter<"Nino"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Nino"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Nino"> | Date | string
+}
+
+export type NinoCreateWithoutCentroEducativoInput = {
+  nombre: string
+  edad?: number | null
+  activo?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tutor?: Prisma.TutorCreateNestedOneWithoutNinosInput
+  posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
+  alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionCreateNestedManyWithoutNinoInput
+}
+
+export type NinoUncheckedCreateWithoutCentroEducativoInput = {
+  id?: number
+  nombre: string
+  edad?: number | null
+  activo?: boolean
+  tutorId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
+  alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedCreateNestedManyWithoutNinoInput
+}
+
+export type NinoCreateOrConnectWithoutCentroEducativoInput = {
+  where: Prisma.NinoWhereUniqueInput
+  create: Prisma.XOR<Prisma.NinoCreateWithoutCentroEducativoInput, Prisma.NinoUncheckedCreateWithoutCentroEducativoInput>
+}
+
+export type NinoCreateManyCentroEducativoInputEnvelope = {
+  data: Prisma.NinoCreateManyCentroEducativoInput | Prisma.NinoCreateManyCentroEducativoInput[]
+  skipDuplicates?: boolean
+}
+
+export type NinoUpsertWithWhereUniqueWithoutCentroEducativoInput = {
+  where: Prisma.NinoWhereUniqueInput
+  update: Prisma.XOR<Prisma.NinoUpdateWithoutCentroEducativoInput, Prisma.NinoUncheckedUpdateWithoutCentroEducativoInput>
+  create: Prisma.XOR<Prisma.NinoCreateWithoutCentroEducativoInput, Prisma.NinoUncheckedCreateWithoutCentroEducativoInput>
+}
+
+export type NinoUpdateWithWhereUniqueWithoutCentroEducativoInput = {
+  where: Prisma.NinoWhereUniqueInput
+  data: Prisma.XOR<Prisma.NinoUpdateWithoutCentroEducativoInput, Prisma.NinoUncheckedUpdateWithoutCentroEducativoInput>
+}
+
+export type NinoUpdateManyWithWhereWithoutCentroEducativoInput = {
+  where: Prisma.NinoScalarWhereInput
+  data: Prisma.XOR<Prisma.NinoUpdateManyMutationInput, Prisma.NinoUncheckedUpdateManyWithoutCentroEducativoInput>
+}
+
+export type NinoCreateWithoutCodigosAfiliacionInput = {
+  nombre: string
+  edad?: number | null
+  activo?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tutor?: Prisma.TutorCreateNestedOneWithoutNinosInput
+  centroEducativo?: Prisma.CentroEducativoCreateNestedOneWithoutNinosInput
+  posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
+  alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
+}
+
+export type NinoUncheckedCreateWithoutCodigosAfiliacionInput = {
+  id?: number
+  nombre: string
+  edad?: number | null
+  activo?: boolean
+  tutorId?: number | null
+  centroEducativoId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
+  alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
+  dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
+}
+
+export type NinoCreateOrConnectWithoutCodigosAfiliacionInput = {
+  where: Prisma.NinoWhereUniqueInput
+  create: Prisma.XOR<Prisma.NinoCreateWithoutCodigosAfiliacionInput, Prisma.NinoUncheckedCreateWithoutCodigosAfiliacionInput>
+}
+
+export type NinoUpsertWithoutCodigosAfiliacionInput = {
+  update: Prisma.XOR<Prisma.NinoUpdateWithoutCodigosAfiliacionInput, Prisma.NinoUncheckedUpdateWithoutCodigosAfiliacionInput>
+  create: Prisma.XOR<Prisma.NinoCreateWithoutCodigosAfiliacionInput, Prisma.NinoUncheckedCreateWithoutCodigosAfiliacionInput>
+  where?: Prisma.NinoWhereInput
+}
+
+export type NinoUpdateToOneWithWhereWithoutCodigosAfiliacionInput = {
+  where?: Prisma.NinoWhereInput
+  data: Prisma.XOR<Prisma.NinoUpdateWithoutCodigosAfiliacionInput, Prisma.NinoUncheckedUpdateWithoutCodigosAfiliacionInput>
+}
+
+export type NinoUpdateWithoutCodigosAfiliacionInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tutor?: Prisma.TutorUpdateOneWithoutNinosNestedInput
+  centroEducativo?: Prisma.CentroEducativoUpdateOneWithoutNinosNestedInput
+  posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
+  alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
+}
+
+export type NinoUncheckedUpdateWithoutCodigosAfiliacionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
+  alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateWithoutCodigosVinculacionInput = {
   nombre: string
   edad?: number | null
+  activo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
+  tutor?: Prisma.TutorCreateNestedOneWithoutNinosInput
+  centroEducativo?: Prisma.CentroEducativoCreateNestedOneWithoutNinosInput
   posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateWithoutCodigosVinculacionInput = {
   id?: number
   nombre: string
   edad?: number | null
-  tutorId: number
+  activo?: boolean
+  tutorId?: number | null
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoCreateOrConnectWithoutCodigosVinculacionInput = {
@@ -634,47 +884,59 @@ export type NinoUpdateToOneWithWhereWithoutCodigosVinculacionInput = {
 export type NinoUpdateWithoutCodigosVinculacionInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
+  tutor?: Prisma.TutorUpdateOneWithoutNinosNestedInput
+  centroEducativo?: Prisma.CentroEducativoUpdateOneWithoutNinosNestedInput
   posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateWithoutCodigosVinculacionInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  tutorId?: Prisma.IntFieldUpdateOperationsInput | number
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateWithoutDispositivosInput = {
   nombre: string
   edad?: number | null
+  activo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
+  tutor?: Prisma.TutorCreateNestedOneWithoutNinosInput
+  centroEducativo?: Prisma.CentroEducativoCreateNestedOneWithoutNinosInput
   posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateWithoutDispositivosInput = {
   id?: number
   nombre: string
   edad?: number | null
-  tutorId: number
+  activo?: boolean
+  tutorId?: number | null
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
   alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoCreateOrConnectWithoutDispositivosInput = {
@@ -696,47 +958,59 @@ export type NinoUpdateToOneWithWhereWithoutDispositivosInput = {
 export type NinoUpdateWithoutDispositivosInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
+  tutor?: Prisma.TutorUpdateOneWithoutNinosNestedInput
+  centroEducativo?: Prisma.CentroEducativoUpdateOneWithoutNinosNestedInput
   posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateWithoutDispositivosInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  tutorId?: Prisma.IntFieldUpdateOperationsInput | number
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateWithoutPosicionesInput = {
   nombre: string
   edad?: number | null
+  activo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
+  tutor?: Prisma.TutorCreateNestedOneWithoutNinosInput
+  centroEducativo?: Prisma.CentroEducativoCreateNestedOneWithoutNinosInput
   alertas?: Prisma.AlertaCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateWithoutPosicionesInput = {
   id?: number
   nombre: string
   edad?: number | null
-  tutorId: number
+  activo?: boolean
+  tutorId?: number | null
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   alertas?: Prisma.AlertaUncheckedCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoCreateOrConnectWithoutPosicionesInput = {
@@ -758,47 +1032,59 @@ export type NinoUpdateToOneWithWhereWithoutPosicionesInput = {
 export type NinoUpdateWithoutPosicionesInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
+  tutor?: Prisma.TutorUpdateOneWithoutNinosNestedInput
+  centroEducativo?: Prisma.CentroEducativoUpdateOneWithoutNinosNestedInput
   alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateWithoutPosicionesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  tutorId?: Prisma.IntFieldUpdateOperationsInput | number
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateWithoutAlertasInput = {
   nombre: string
   edad?: number | null
+  activo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  tutor: Prisma.TutorCreateNestedOneWithoutNinosInput
+  tutor?: Prisma.TutorCreateNestedOneWithoutNinosInput
+  centroEducativo?: Prisma.CentroEducativoCreateNestedOneWithoutNinosInput
   posiciones?: Prisma.PosicionNinoCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionCreateNestedManyWithoutNinoInput
 }
 
 export type NinoUncheckedCreateWithoutAlertasInput = {
   id?: number
   nombre: string
   edad?: number | null
-  tutorId: number
+  activo?: boolean
+  tutorId?: number | null
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   posiciones?: Prisma.PosicionNinoUncheckedCreateNestedManyWithoutNinoInput
   dispositivos?: Prisma.DispositivoUncheckedCreateNestedManyWithoutNinoInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedCreateNestedManyWithoutNinoInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedCreateNestedManyWithoutNinoInput
 }
 
 export type NinoCreateOrConnectWithoutAlertasInput = {
@@ -820,30 +1106,38 @@ export type NinoUpdateToOneWithWhereWithoutAlertasInput = {
 export type NinoUpdateWithoutAlertasInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tutor?: Prisma.TutorUpdateOneRequiredWithoutNinosNestedInput
+  tutor?: Prisma.TutorUpdateOneWithoutNinosNestedInput
+  centroEducativo?: Prisma.CentroEducativoUpdateOneWithoutNinosNestedInput
   posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateWithoutAlertasInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  tutorId?: Prisma.IntFieldUpdateOperationsInput | number
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoCreateManyTutorInput = {
   id?: number
   nombre: string
   edad?: number | null
+  activo?: boolean
+  centroEducativoId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -851,30 +1145,87 @@ export type NinoCreateManyTutorInput = {
 export type NinoUpdateWithoutTutorInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  centroEducativo?: Prisma.CentroEducativoUpdateOneWithoutNinosNestedInput
   posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateWithoutTutorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
   alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
   dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
   codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedUpdateManyWithoutNinoNestedInput
 }
 
 export type NinoUncheckedUpdateManyWithoutTutorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  centroEducativoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type NinoCreateManyCentroEducativoInput = {
+  id?: number
+  nombre: string
+  edad?: number | null
+  activo?: boolean
+  tutorId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type NinoUpdateWithoutCentroEducativoInput = {
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tutor?: Prisma.TutorUpdateOneWithoutNinosNestedInput
+  posiciones?: Prisma.PosicionNinoUpdateManyWithoutNinoNestedInput
+  alertas?: Prisma.AlertaUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUpdateManyWithoutNinoNestedInput
+}
+
+export type NinoUncheckedUpdateWithoutCentroEducativoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  posiciones?: Prisma.PosicionNinoUncheckedUpdateManyWithoutNinoNestedInput
+  alertas?: Prisma.AlertaUncheckedUpdateManyWithoutNinoNestedInput
+  dispositivos?: Prisma.DispositivoUncheckedUpdateManyWithoutNinoNestedInput
+  codigosVinculacion?: Prisma.CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput
+  codigosAfiliacion?: Prisma.CodigoAfiliacionUncheckedUpdateManyWithoutNinoNestedInput
+}
+
+export type NinoUncheckedUpdateManyWithoutCentroEducativoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  edad?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tutorId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -889,6 +1240,7 @@ export type NinoCountOutputType = {
   alertas: number
   dispositivos: number
   codigosVinculacion: number
+  codigosAfiliacion: number
 }
 
 export type NinoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -896,6 +1248,7 @@ export type NinoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   alertas?: boolean | NinoCountOutputTypeCountAlertasArgs
   dispositivos?: boolean | NinoCountOutputTypeCountDispositivosArgs
   codigosVinculacion?: boolean | NinoCountOutputTypeCountCodigosVinculacionArgs
+  codigosAfiliacion?: boolean | NinoCountOutputTypeCountCodigosAfiliacionArgs
 }
 
 /**
@@ -936,19 +1289,30 @@ export type NinoCountOutputTypeCountCodigosVinculacionArgs<ExtArgs extends runti
   where?: Prisma.CodigoVinculacionWhereInput
 }
 
+/**
+ * NinoCountOutputType without action
+ */
+export type NinoCountOutputTypeCountCodigosAfiliacionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CodigoAfiliacionWhereInput
+}
+
 
 export type NinoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
   edad?: boolean
+  activo?: boolean
   tutorId?: boolean
+  centroEducativoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  tutor?: boolean | Prisma.TutorDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.Nino$tutorArgs<ExtArgs>
+  centroEducativo?: boolean | Prisma.Nino$centroEducativoArgs<ExtArgs>
   posiciones?: boolean | Prisma.Nino$posicionesArgs<ExtArgs>
   alertas?: boolean | Prisma.Nino$alertasArgs<ExtArgs>
   dispositivos?: boolean | Prisma.Nino$dispositivosArgs<ExtArgs>
   codigosVinculacion?: boolean | Prisma.Nino$codigosVinculacionArgs<ExtArgs>
+  codigosAfiliacion?: boolean | Prisma.Nino$codigosAfiliacionArgs<ExtArgs>
   _count?: boolean | Prisma.NinoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["nino"]>
 
@@ -956,61 +1320,77 @@ export type NinoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   nombre?: boolean
   edad?: boolean
+  activo?: boolean
   tutorId?: boolean
+  centroEducativoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  tutor?: boolean | Prisma.TutorDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.Nino$tutorArgs<ExtArgs>
+  centroEducativo?: boolean | Prisma.Nino$centroEducativoArgs<ExtArgs>
 }, ExtArgs["result"]["nino"]>
 
 export type NinoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
   edad?: boolean
+  activo?: boolean
   tutorId?: boolean
+  centroEducativoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  tutor?: boolean | Prisma.TutorDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.Nino$tutorArgs<ExtArgs>
+  centroEducativo?: boolean | Prisma.Nino$centroEducativoArgs<ExtArgs>
 }, ExtArgs["result"]["nino"]>
 
 export type NinoSelectScalar = {
   id?: boolean
   nombre?: boolean
   edad?: boolean
+  activo?: boolean
   tutorId?: boolean
+  centroEducativoId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type NinoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "edad" | "tutorId" | "createdAt" | "updatedAt", ExtArgs["result"]["nino"]>
+export type NinoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "edad" | "activo" | "tutorId" | "centroEducativoId" | "createdAt" | "updatedAt", ExtArgs["result"]["nino"]>
 export type NinoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutor?: boolean | Prisma.TutorDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.Nino$tutorArgs<ExtArgs>
+  centroEducativo?: boolean | Prisma.Nino$centroEducativoArgs<ExtArgs>
   posiciones?: boolean | Prisma.Nino$posicionesArgs<ExtArgs>
   alertas?: boolean | Prisma.Nino$alertasArgs<ExtArgs>
   dispositivos?: boolean | Prisma.Nino$dispositivosArgs<ExtArgs>
   codigosVinculacion?: boolean | Prisma.Nino$codigosVinculacionArgs<ExtArgs>
+  codigosAfiliacion?: boolean | Prisma.Nino$codigosAfiliacionArgs<ExtArgs>
   _count?: boolean | Prisma.NinoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type NinoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutor?: boolean | Prisma.TutorDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.Nino$tutorArgs<ExtArgs>
+  centroEducativo?: boolean | Prisma.Nino$centroEducativoArgs<ExtArgs>
 }
 export type NinoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutor?: boolean | Prisma.TutorDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.Nino$tutorArgs<ExtArgs>
+  centroEducativo?: boolean | Prisma.Nino$centroEducativoArgs<ExtArgs>
 }
 
 export type $NinoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Nino"
   objects: {
-    tutor: Prisma.$TutorPayload<ExtArgs>
+    tutor: Prisma.$TutorPayload<ExtArgs> | null
+    centroEducativo: Prisma.$CentroEducativoPayload<ExtArgs> | null
     posiciones: Prisma.$PosicionNinoPayload<ExtArgs>[]
     alertas: Prisma.$AlertaPayload<ExtArgs>[]
     dispositivos: Prisma.$DispositivoPayload<ExtArgs>[]
     codigosVinculacion: Prisma.$CodigoVinculacionPayload<ExtArgs>[]
+    codigosAfiliacion: Prisma.$CodigoAfiliacionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     nombre: string
     edad: number | null
-    tutorId: number
+    activo: boolean
+    tutorId: number | null
+    centroEducativoId: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["nino"]>
@@ -1407,11 +1787,13 @@ readonly fields: NinoFieldRefs;
  */
 export interface Prisma__NinoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  tutor<T extends Prisma.TutorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TutorDefaultArgs<ExtArgs>>): Prisma.Prisma__TutorClient<runtime.Types.Result.GetResult<Prisma.$TutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  tutor<T extends Prisma.Nino$tutorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$tutorArgs<ExtArgs>>): Prisma.Prisma__TutorClient<runtime.Types.Result.GetResult<Prisma.$TutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  centroEducativo<T extends Prisma.Nino$centroEducativoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$centroEducativoArgs<ExtArgs>>): Prisma.Prisma__CentroEducativoClient<runtime.Types.Result.GetResult<Prisma.$CentroEducativoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   posiciones<T extends Prisma.Nino$posicionesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$posicionesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PosicionNinoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   alertas<T extends Prisma.Nino$alertasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$alertasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlertaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dispositivos<T extends Prisma.Nino$dispositivosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$dispositivosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DispositivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   codigosVinculacion<T extends Prisma.Nino$codigosVinculacionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$codigosVinculacionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CodigoVinculacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  codigosAfiliacion<T extends Prisma.Nino$codigosAfiliacionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Nino$codigosAfiliacionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CodigoAfiliacionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1444,7 +1826,9 @@ export interface NinoFieldRefs {
   readonly id: Prisma.FieldRef<"Nino", 'Int'>
   readonly nombre: Prisma.FieldRef<"Nino", 'String'>
   readonly edad: Prisma.FieldRef<"Nino", 'Int'>
+  readonly activo: Prisma.FieldRef<"Nino", 'Boolean'>
   readonly tutorId: Prisma.FieldRef<"Nino", 'Int'>
+  readonly centroEducativoId: Prisma.FieldRef<"Nino", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Nino", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Nino", 'DateTime'>
 }
@@ -1848,6 +2232,44 @@ export type NinoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Nino.tutor
+ */
+export type Nino$tutorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Tutor
+   */
+  select?: Prisma.TutorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Tutor
+   */
+  omit?: Prisma.TutorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TutorInclude<ExtArgs> | null
+  where?: Prisma.TutorWhereInput
+}
+
+/**
+ * Nino.centroEducativo
+ */
+export type Nino$centroEducativoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CentroEducativo
+   */
+  select?: Prisma.CentroEducativoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CentroEducativo
+   */
+  omit?: Prisma.CentroEducativoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CentroEducativoInclude<ExtArgs> | null
+  where?: Prisma.CentroEducativoWhereInput
+}
+
+/**
  * Nino.posiciones
  */
 export type Nino$posicionesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1941,6 +2363,30 @@ export type Nino$codigosVinculacionArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.CodigoVinculacionScalarFieldEnum | Prisma.CodigoVinculacionScalarFieldEnum[]
+}
+
+/**
+ * Nino.codigosAfiliacion
+ */
+export type Nino$codigosAfiliacionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CodigoAfiliacion
+   */
+  select?: Prisma.CodigoAfiliacionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CodigoAfiliacion
+   */
+  omit?: Prisma.CodigoAfiliacionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CodigoAfiliacionInclude<ExtArgs> | null
+  where?: Prisma.CodigoAfiliacionWhereInput
+  orderBy?: Prisma.CodigoAfiliacionOrderByWithRelationInput | Prisma.CodigoAfiliacionOrderByWithRelationInput[]
+  cursor?: Prisma.CodigoAfiliacionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CodigoAfiliacionScalarFieldEnum | Prisma.CodigoAfiliacionScalarFieldEnum[]
 }
 
 /**

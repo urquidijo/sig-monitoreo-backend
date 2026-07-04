@@ -8,8 +8,11 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Usuario.js'
 export type * from './models/Tutor.js'
+export type * from './models/CentroEducativo.js'
 export type * from './models/Nino.js'
+export type * from './models/CodigoAfiliacion.js'
 export type * from './models/CodigoVinculacion.js'
 export type * from './models/Dispositivo.js'
 export type * from './models/ZonaMonitoreo.js'

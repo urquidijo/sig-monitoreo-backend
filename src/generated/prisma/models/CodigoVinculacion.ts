@@ -428,10 +428,6 @@ export type CodigoVinculacionUncheckedUpdateManyWithoutNinoNestedInput = {
   deleteMany?: Prisma.CodigoVinculacionScalarWhereInput | Prisma.CodigoVinculacionScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type CodigoVinculacionCreateWithoutNinoInput = {
   codigo: string
   usado?: boolean
