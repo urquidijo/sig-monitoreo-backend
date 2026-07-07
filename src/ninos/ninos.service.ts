@@ -6,13 +6,17 @@ import {
 } from '@nestjs/common';
 import { randomInt } from 'crypto';
 import { PrismaService } from '../prisma/prisma.service';
+import { PresenciaService } from '../presencia/presencia.service';
 import { CrearNinoDto, ActualizarNinoDto } from './dto/nino.dto';
 
 const VIGENCIA_CODIGO_AFILIACION_MS = 30 * 60 * 1000;
 
 @Injectable()
 export class NinosService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly presencia: PresenciaService,
+  ) {}
 
   async crear(dto: CrearNinoDto) {
     return this.prisma.nino.create({
@@ -66,11 +70,20 @@ export class NinosService {
   }
 
   async misNinos(tutorId: number) {
-    return this.prisma.nino.findMany({
+    const ninos = await this.prisma.nino.findMany({
       where: { tutorId },
-      include: { centroEducativo: true },
       orderBy: { id: 'desc' },
+      include: {
+        centroEducativo: true,
+        dispositivos: { select: { revocado: true } },
+      },
     });
+
+    return ninos.map(({ dispositivos, ...nino }) => ({
+      ...nino,
+      vinculado: dispositivos.some((d) => !d.revocado),
+      enLinea: this.presencia.estaConectado(nino.id),
+    }));
   }
 
   async generarCodigoAfiliacion(ninoId: number) {

@@ -3,6 +3,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { PrismaModule } from './prisma/prisma.module';
+import { PresenciaModule } from './presencia/presencia.module';
 import { ZonasModule } from './zonas/zonas.module';
 import { MonitoreoModule } from './monitoreo/monitoreo.module';
 import { AlertasModule } from './alertas/alertas.module';
@@ -22,6 +23,7 @@ import { CentrosEducativosModule } from './centros-educativos/centros-educativos
       throttlers: [{ ttl: 60_000, limit: 100 }],
     }),
     PrismaModule,
+    PresenciaModule,
     AuthModule,
     UsuariosModule,
     CentrosEducativosModule,

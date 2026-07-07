@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { PresenciaService } from '../presencia/presencia.service';
 import { JwtPayload } from '../auth/strategies/jwt.strategy';
 
 interface ActualizarPosicionDto {
@@ -16,7 +17,55 @@ interface ActualizarPosicionDto {
 
 @Injectable()
 export class MonitoreoService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly presencia: PresenciaService,
+  ) {}
+
+  /**
+   * Panel del admin: todos los niños activos con su última posición conocida,
+   * el estado de su dispositivo y si están transmitiendo en vivo ahora mismo.
+   */
+  async panelAdmin() {
+    const ninos = await this.prisma.nino.findMany({
+      where: { activo: true },
+      orderBy: { id: 'asc' },
+      include: {
+        centroEducativo: { select: { id: true, nombre: true } },
+        dispositivos: {
+          select: { revocado: true, ultimaConexion: true },
+          orderBy: { createdAt: 'desc' },
+        },
+        posiciones: {
+          orderBy: { createdAt: 'desc' },
+          take: 1,
+          select: {
+            latitud: true,
+            longitud: true,
+            dentroArea: true,
+            createdAt: true,
+          },
+        },
+      },
+    });
+
+    return ninos.map((nino) => {
+      const dispositivoActivo =
+        nino.dispositivos.find((d) => !d.revocado) ?? null;
+
+      return {
+        id: nino.id,
+        nombre: nino.nombre,
+        centroEducativo: nino.centroEducativo,
+        ultimaPosicion: nino.posiciones[0] ?? null,
+        dispositivo: {
+          vinculado: dispositivoActivo !== null,
+          ultimaConexion: dispositivoActivo?.ultimaConexion ?? null,
+        },
+        enLinea: this.presencia.estaConectado(nino.id),
+      };
+    });
+  }
 
   async actualizarPosicion(dto: ActualizarPosicionDto) {
     if (!dto.ninoId || !dto.zonaId) {
@@ -194,5 +243,32 @@ export class MonitoreoService {
     }
 
     return posicion;
+  }
+
+  /** Últimas posiciones del niño en orden cronológico (para dibujar el recorrido). */
+  async trayectoria(ninoId: number, usuario: JwtPayload, limite = 50) {
+    if (usuario.rol === 'TUTOR') {
+      const nino = await this.prisma.nino.findUnique({
+        where: { id: ninoId },
+      });
+
+      if (!nino || nino.tutorId !== usuario.tutorId) {
+        throw new ForbiddenException('No tienes acceso a este niño');
+      }
+    }
+
+    const posiciones = await this.prisma.posicionNino.findMany({
+      where: { ninoId },
+      orderBy: { createdAt: 'desc' },
+      take: limite,
+      select: {
+        latitud: true,
+        longitud: true,
+        dentroArea: true,
+        createdAt: true,
+      },
+    });
+
+    return posiciones.reverse();
   }
 }

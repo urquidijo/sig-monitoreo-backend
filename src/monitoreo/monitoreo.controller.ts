@@ -16,6 +16,12 @@ export class MonitoreoController {
   constructor(private readonly monitoreoService: MonitoreoService) {}
 
   @Roles('ADMIN')
+  @Get('panel')
+  panel() {
+    return this.monitoreoService.panelAdmin();
+  }
+
+  @Roles('ADMIN')
   @Post('posicion')
   actualizarPosicion(
     @Body()
@@ -40,5 +46,13 @@ export class MonitoreoController {
     @CurrentUser() usuario: JwtPayload,
   ) {
     return this.monitoreoService.obtenerUltimaPosicion(id, usuario);
+  }
+
+  @Get('nino/:id/trayectoria')
+  trayectoria(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() usuario: JwtPayload,
+  ) {
+    return this.monitoreoService.trayectoria(id, usuario);
   }
 }

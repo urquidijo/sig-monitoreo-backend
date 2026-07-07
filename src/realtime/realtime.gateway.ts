@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Server, Socket } from 'socket.io';
 import { PrismaService } from '../prisma/prisma.service';
 import { MonitoreoService } from '../monitoreo/monitoreo.service';
+import { PresenciaService } from '../presencia/presencia.service';
 import { JwtPayload } from '../auth/strategies/jwt.strategy';
 
 @WebSocketGateway({ cors: { origin: '*' } })
@@ -25,6 +26,7 @@ export class RealtimeGateway
     private readonly prisma: PrismaService,
     private readonly monitoreoService: MonitoreoService,
     private readonly jwtService: JwtService,
+    private readonly presencia: PresenciaService,
   ) {}
 
   async handleConnection(client: Socket) {
@@ -64,10 +66,24 @@ export class RealtimeGateway
       data: { ultimaConexion: new Date() },
     });
 
+    this.presencia.marcarConectado(dispositivo.ninoId);
+    this.server
+      .to(`nino:${dispositivo.ninoId}`)
+      .emit('presencia:update', { ninoId: dispositivo.ninoId, enLinea: true });
+
     client.emit('auth:ok', { ninoId: dispositivo.ninoId });
   }
 
   handleDisconnect(client: Socket) {
+    const ninoId = this.ninoIdPorSocket.get(client.id);
+
+    if (ninoId !== undefined) {
+      this.presencia.marcarDesconectado(ninoId);
+      this.server
+        .to(`nino:${ninoId}`)
+        .emit('presencia:update', { ninoId, enLinea: false });
+    }
+
     this.ninoIdPorSocket.delete(client.id);
     this.usuarioPorSocket.delete(client.id);
   }
@@ -97,6 +113,12 @@ export class RealtimeGateway
     }
 
     void client.join(`nino:${payload.ninoId}`);
+
+    // Enviar el estado de presencia actual a quien se acaba de unir
+    client.emit('presencia:update', {
+      ninoId: payload.ninoId,
+      enLinea: this.presencia.estaConectado(payload.ninoId),
+    });
   }
 
   @SubscribeMessage('join-codigo')
