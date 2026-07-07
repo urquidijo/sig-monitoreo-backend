@@ -19,8 +19,6 @@ export class MonitoreoService {
   constructor(private readonly prisma: PrismaService) {}
 
   async actualizarPosicion(dto: ActualizarPosicionDto) {
-    console.log('DTO EN SERVICE:', dto);
-
     if (!dto.ninoId || !dto.zonaId) {
       throw new BadRequestException('Faltan ninoId o zonaId');
     }
@@ -86,6 +84,16 @@ export class MonitoreoService {
       throw new BadRequestException('Latitud o longitud inválida');
     }
 
+    // Se evalúa la geocerca solo contra las zonas del centro del niño.
+    // Si el niño no tiene centro asignado, cae al comportamiento global
+    // (todas las zonas activas) para no romper configuraciones simples.
+    const nino = await this.prisma.nino.findUnique({
+      where: { id: ninoId },
+      select: { centroEducativoId: true },
+    });
+
+    const centroId = nino?.centroEducativoId ?? null;
+
     const validacion = await this.prisma.$queryRaw<
       { dentro: boolean | null }[]
     >`
@@ -96,7 +104,11 @@ export class MonitoreoService {
         )
       ) AS dentro
       FROM zonas_monitoreo z
-      WHERE z.activo = true;
+      WHERE z.activo = true
+        AND (
+          ${centroId}::int IS NULL
+          OR z."centroEducativoId" = ${centroId}::int
+        );
     `;
 
     const dentroArea = validacion[0]?.dentro ?? false;
