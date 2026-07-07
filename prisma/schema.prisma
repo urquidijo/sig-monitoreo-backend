@@ -39,6 +39,7 @@ model Tutor {
   nombre     String
   telefono   String?
   email      String?  @unique
+  pushToken  String?
   ninos      Nino[]
 
   usuarioId  Int?     @unique

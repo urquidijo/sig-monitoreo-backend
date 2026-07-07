@@ -19,4 +19,12 @@ export class AuthController {
   me(@CurrentUser() usuario: JwtPayload) {
     return usuario;
   }
+
+  @Post('push-token')
+  guardarPushToken(
+    @Body() body: { token: string },
+    @CurrentUser() usuario: JwtPayload,
+  ) {
+    return this.authService.guardarPushToken(usuario.tutorId, body.token);
+  }
 }

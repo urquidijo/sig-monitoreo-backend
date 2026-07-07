@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { PresenciaService } from '../presencia/presencia.service';
+import { PushService } from '../push/push.service';
 import { JwtPayload } from '../auth/strategies/jwt.strategy';
 
 interface ActualizarPosicionDto {
@@ -20,6 +21,7 @@ export class MonitoreoService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly presencia: PresenciaService,
+    private readonly push: PushService,
   ) {}
 
   /**
@@ -178,6 +180,15 @@ export class MonitoreoService {
     longitud: number,
     dentroArea: boolean,
   ) {
+    // Estado anterior (antes de guardar la nueva posición) para detectar la
+    // transición dentro -> fuera y no generar una alerta por cada posición.
+    const anterior = await this.prisma.posicionNino.findFirst({
+      where: { ninoId },
+      orderBy: { createdAt: 'desc' },
+      select: { dentroArea: true },
+    });
+    const estabaDentro = anterior?.dentroArea ?? true;
+
     await this.prisma.$executeRaw`
       INSERT INTO posiciones_nino (
         "ninoId",
@@ -197,11 +208,12 @@ export class MonitoreoService {
       );
     `;
 
-    if (dentroArea) {
+    // Solo se levanta alerta y se notifica cuando ACABA de salir del área.
+    if (dentroArea || estabaDentro === false) {
       return null;
     }
 
-    return this.prisma.alerta.create({
+    const alerta = await this.prisma.alerta.create({
       data: {
         ninoId,
         estado: 'FUERA_AREA',
@@ -210,6 +222,20 @@ export class MonitoreoService {
         longitud,
       },
     });
+
+    const nino = await this.prisma.nino.findUnique({
+      where: { id: ninoId },
+      include: { tutor: { select: { pushToken: true } } },
+    });
+
+    await this.push.enviar(
+      nino?.tutor?.pushToken,
+      '🚨 Alerta de zona',
+      `${nino?.nombre ?? 'El niño'} salió del área segura.`,
+      { ninoId, tipo: 'FUERA_AREA' },
+    );
+
+    return alerta;
   }
 
   async obtenerUltimaPosicion(ninoId: number, usuario: JwtPayload) {

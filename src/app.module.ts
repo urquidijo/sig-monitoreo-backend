@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { PrismaModule } from './prisma/prisma.module';
 import { PresenciaModule } from './presencia/presencia.module';
+import { PushModule } from './push/push.module';
 import { ZonasModule } from './zonas/zonas.module';
 import { MonitoreoModule } from './monitoreo/monitoreo.module';
 import { AlertasModule } from './alertas/alertas.module';
@@ -24,6 +25,7 @@ import { CentrosEducativosModule } from './centros-educativos/centros-educativos
     }),
     PrismaModule,
     PresenciaModule,
+    PushModule,
     AuthModule,
     UsuariosModule,
     CentrosEducativosModule,

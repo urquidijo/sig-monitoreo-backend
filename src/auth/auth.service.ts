@@ -39,4 +39,17 @@ export class AuthService {
       usuario: payload,
     };
   }
+
+  async guardarPushToken(tutorId: number | null, token: string) {
+    if (!tutorId || !token) {
+      return { ok: false };
+    }
+
+    await this.prisma.tutor.update({
+      where: { id: tutorId },
+      data: { pushToken: token },
+    });
+
+    return { ok: true };
+  }
 }

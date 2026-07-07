@@ -98,6 +98,7 @@ export const TutorScalarFieldEnum = {
   nombre: 'nombre',
   telefono: 'telefono',
   email: 'email',
+  pushToken: 'pushToken',
   usuarioId: 'usuarioId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
