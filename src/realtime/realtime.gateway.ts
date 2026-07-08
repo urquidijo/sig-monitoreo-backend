@@ -72,6 +72,10 @@ export class RealtimeGateway
       .emit('presencia:update', { ninoId: dispositivo.ninoId, enLinea: true });
 
     client.emit('auth:ok', { ninoId: dispositivo.ninoId });
+
+    // Si el niño ya estaba fuera del área desde antes de conectarse, no hay
+    // que esperar a la siguiente posición (ni al cooldown) para avisar.
+    await this.monitoreoService.evaluarAlertaPorConexion(dispositivo.ninoId);
   }
 
   handleDisconnect(client: Socket) {

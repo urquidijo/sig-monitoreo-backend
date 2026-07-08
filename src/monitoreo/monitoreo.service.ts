@@ -174,21 +174,17 @@ export class MonitoreoService {
     return { ninoId, latitud, longitud, dentroArea, alerta };
   }
 
+  // Mientras el niño sigue fuera del área, se vuelve a avisar cada tanto en
+  // vez de una sola vez por "transición", para que una salida prolongada no
+  // quede silenciosa.
+  private static readonly COOLDOWN_ALERTA_MS = 5 * 60 * 1000;
+
   private async persistirPosicionYEvaluarAlerta(
     ninoId: number,
     latitud: number,
     longitud: number,
     dentroArea: boolean,
   ) {
-    // Estado anterior (antes de guardar la nueva posición) para detectar la
-    // transición dentro -> fuera y no generar una alerta por cada posición.
-    const anterior = await this.prisma.posicionNino.findFirst({
-      where: { ninoId },
-      orderBy: { createdAt: 'desc' },
-      select: { dentroArea: true },
-    });
-    const estabaDentro = anterior?.dentroArea ?? true;
-
     await this.prisma.$executeRaw`
       INSERT INTO posiciones_nino (
         "ninoId",
@@ -208,11 +204,41 @@ export class MonitoreoService {
       );
     `;
 
-    // Solo se levanta alerta y se notifica cuando ACABA de salir del área.
-    if (dentroArea || estabaDentro === false) {
+    if (dentroArea) {
       return null;
     }
 
+    return this.crearAlertaSiCorresponde(ninoId, latitud, longitud);
+  }
+
+  private async crearAlertaSiCorresponde(
+    ninoId: number,
+    latitud: number,
+    longitud: number,
+  ) {
+    const ultimaAlerta = await this.prisma.alerta.findFirst({
+      where: { ninoId },
+      orderBy: { createdAt: 'desc' },
+      select: { createdAt: true },
+    });
+
+    const dentroDelCooldown =
+      ultimaAlerta &&
+      Date.now() - ultimaAlerta.createdAt.getTime() <
+        MonitoreoService.COOLDOWN_ALERTA_MS;
+
+    if (dentroDelCooldown) {
+      return null;
+    }
+
+    return this.crearAlerta(ninoId, latitud, longitud);
+  }
+
+  private async crearAlerta(
+    ninoId: number,
+    latitud: number,
+    longitud: number,
+  ) {
     const alerta = await this.prisma.alerta.create({
       data: {
         ninoId,
@@ -236,6 +262,29 @@ export class MonitoreoService {
     );
 
     return alerta;
+  }
+
+  /**
+   * Al conectarse un dispositivo, si la última posición conocida ya estaba
+   * fuera del área, genera la alerta al instante (sin esperar el cooldown)
+   * para que el tutor vea el estado real apenas el niño se pone en línea.
+   */
+  async evaluarAlertaPorConexion(ninoId: number) {
+    const ultimaPosicion = await this.prisma.posicionNino.findFirst({
+      where: { ninoId },
+      orderBy: { createdAt: 'desc' },
+      select: { dentroArea: true, latitud: true, longitud: true },
+    });
+
+    if (!ultimaPosicion || ultimaPosicion.dentroArea) {
+      return null;
+    }
+
+    return this.crearAlerta(
+      ninoId,
+      ultimaPosicion.latitud,
+      ultimaPosicion.longitud,
+    );
   }
 
   async obtenerUltimaPosicion(ninoId: number, usuario: JwtPayload) {
